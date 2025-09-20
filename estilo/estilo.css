@@ -1,14 +1,2 @@
 /* Juan Fernández López - UO296143 */
 /* Estilos generales del proyecto MotoGP-Desktop */
-
-nav{
-  display: flex;
-  justify-content: flex-end;
-  background-color: black;
-  min-height: 100px;
-}
-
-a{
-  color: white;
-  min
-}
