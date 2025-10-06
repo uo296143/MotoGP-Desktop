@@ -1,0 +1,6 @@
+
+/* Especificidad 0-0-1 */
+header{
+    display: flex;
+    flex-direction: row;
+}
