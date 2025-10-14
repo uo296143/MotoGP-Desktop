@@ -24,11 +24,21 @@ nav{
     color: #1C1C1C;
 }
 
+/* Especificidad 0-0-2 */
+nav > a{
+    font-size: 1.2rem;
+}
+
+/* Especificidad 0-0-3 */
+header > h1 > a{
+    font-size: 3rem;
+}
+
 /* Especificidad 0-1-0 */
 /* Color de fondo heredado de body: #F2F1E8 */
 /* Estilos para el enlace activo (html actual) en el menú de navegación */
 .active{
-    color:#1964af;
+    color:#0E457C;
 }
 
 /* Especificidad 0-1-1 */
@@ -41,11 +51,11 @@ p:first-of-type{
 /* Color de fondo heredado de body: #F2F1E8 */
 a{
     text-decoration-line: none;
-    color: #1C1C1C;
+    color: #000000;
 }
 
 /* Especificidad 0-1-1 */
 /* Color de fondo heredado de body: #F2F1E8 */
 a:hover{
-    color:#c41f1f;
+    color:#771313;
 }
