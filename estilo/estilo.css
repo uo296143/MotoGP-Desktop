@@ -24,21 +24,28 @@ nav{
     color: #1C1C1C;
 }
 
+/* Especificidad 0-1-0 */
+/* Color de fondo heredado de body: #F2F1E8 */
 /* Estilos para el enlace activo (html actual) en el menú de navegación */
 .active{
-    color:rgba(146, 159, 75, 0.857);
+    color:#1964af;
 }
 
-/* Estilo para el html actual en las migas de pan. */
-p:first-of-type {
+/* Especificidad 0-1-1 */
+/* Estilo para el parrafo de las breadcumbs. */
+p:first-of-type{
   font-size:0.85em;
 }
 
-a {
+/* Especificidad 0-0-1 */
+/* Color de fondo heredado de body: #F2F1E8 */
+a{
+    text-decoration-line: none;
     color: #1C1C1C;
 }
 
+/* Especificidad 0-1-1 */
+/* Color de fondo heredado de body: #F2F1E8 */
 a:hover{
-    text-decoration-line: none;
-    color:red;
+    color:#c41f1f;
 }

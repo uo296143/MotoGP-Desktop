@@ -3,4 +3,61 @@
 header{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+}
+
+h1 {
+  flex: 1;                      
+  text-align: center;
+}
+
+nav {
+  display: flex;
+  flex: 3;                      
+  justify-content: space-around; 
+  align-items: center;           
+}
+
+/* Se esta redefiniendo :
+    header{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    nav {
+        display: flex; 
+  Se esta cambiando:
+    - El header para que se distribuyan los elementos verticalmente.
+    - El nav para que los elementos se distribuyan verticalmente.
+    - No se están mostrando las breadcumbs.
+    - Los videos y audios se adaptan al ancho de la pantalla.
+*/
+@media (min-width: 320px) and (max-width: 799px) {
+    header{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    nav {
+        display: flex;       
+        flex-direction: column;             
+        gap: 0.5rem;    
+        padding: 0.5rem;  
+    }
+
+    p:first-of-type {
+        display: none;
+    }
+
+    video{
+        width: 100%;
+        height: auto;
+    }
+
+    audio{
+        width: 100%;
+        height: auto;
+    }
 }
