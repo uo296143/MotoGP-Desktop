@@ -24,6 +24,21 @@ nav{
     color: #1C1C1C;
 }
 
+/* Estilos para el enlace activo (html actual) en el menú de navegación */
 .active{
-    color:#000000;
+    color:rgba(146, 159, 75, 0.857);
+}
+
+/* Estilo para el html actual en las migas de pan. */
+p:first-of-type {
+  font-size:0.85em;
+}
+
+a {
+    color: #1C1C1C;
+}
+
+a:hover{
+    text-decoration-line: none;
+    color:red;
 }
