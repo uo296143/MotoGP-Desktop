@@ -1,14 +1,15 @@
 <!--
   DTD para describir la gramática del archivo circuito.xml.
   Pensado para facilitar:
-    - Parsing en Python (elementos y atributos con nombres consistentes en minúsculas, sin espacios ni acentos).
+    - Parsing en Python (elementos y atributos con nombres consistentes en minúsculas, sin espacios ni
+acentos).
     - Migración futura a XML Schema (XSD) manteniendo la misma estructura.
 -->
 
 <!ELEMENT circuito (nombre, longitud, anchuraMedia, fechaCarrera, horaInicio, vueltas, localidad, pais, patrocinador, referencias, galeriaFotos, galeriaVideos, puntoOrigen, tramos, vencedor, clasificacionMundial)>
 <!ATTLIST circuito
-          version CDATA #IMPLIED
-          xml:lang CDATA #IMPLIED>
+  version CDATA #IMPLIED
+  xml:lang CDATA #IMPLIED>
 
 <!ELEMENT nombre (#PCDATA)>
 
@@ -19,12 +20,14 @@
 <!ATTLIST anchuraMedia unidad (metros) #REQUIRED>
 
 <!ELEMENT fechaCarrera (#PCDATA)>
-<!ATTLIST fechaCarrera formato (YYYY-MM-DD) #IMPLIED
-          calendario (gregoriano) #IMPLIED>
+<!ATTLIST fechaCarrera
+  formato (YYYY-MM-DD) #IMPLIED
+  calendario (gregoriano) #IMPLIED>
 
 <!ELEMENT horaInicio (#PCDATA)>
-<!ATTLIST horaInicio zona CDATA #IMPLIED
-          formato (HH:MM) #IMPLIED>
+<!ATTLIST horaInicio
+  zona CDATA #IMPLIED
+  formato (HH:MM) #IMPLIED>
 
 <!ELEMENT vueltas (#PCDATA)>
 
@@ -38,16 +41,18 @@
 <!-- Fotos: mínimo 1, máximo 5 -->
 <!ELEMENT galeriaFotos (foto, foto?, foto?, foto?, foto?)>
 <!ELEMENT foto EMPTY>
-<!ATTLIST foto archivo CDATA #REQUIRED
-                titulo CDATA #IMPLIED
-                tipo (jpg|jpeg|png|gif|webp) #IMPLIED>
+<!ATTLIST foto
+  archivo CDATA #REQUIRED
+  titulo CDATA #IMPLIED
+  tipo (jpg|jpeg|png|gif|webp) #IMPLIED>
 
 <!-- Vídeos: mínimo 1, máximo 3 -->
 <!ELEMENT galeriaVideos (video, video?, video?)>
 <!ELEMENT video EMPTY>
-<!ATTLIST video archivo CDATA #REQUIRED
-                 titulo CDATA #IMPLIED
-                 tipo (mp4|mov|mkv|webm) #IMPLIED>
+<!ATTLIST video
+  archivo CDATA #REQUIRED
+  titulo CDATA #IMPLIED
+  tipo (mp4|mov|mkv|webm) #IMPLIED>
 
 <!ELEMENT puntoOrigen (longitudGeo, latitudGeo, altitudMSNM)>
 <!ELEMENT longitudGeo (#PCDATA)>
@@ -57,7 +62,6 @@
 
 <!ELEMENT tramos (tramo+)>
 <!ELEMENT tramo (distancia, puntoFinal, sector)>
-<!ATTLIST tramo id ID #IMPLIED>
 <!ELEMENT distancia (#PCDATA)>
 <!ATTLIST distancia unidad (metros) #REQUIRED>
 <!ELEMENT puntoFinal (longitudGeo, latitudGeo, altitudMSNM)>

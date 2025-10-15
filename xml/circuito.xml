@@ -20,11 +20,12 @@
   <referencias>
     <ref>https://es.wikipedia.org/wiki/Aut%C3%B3dromo_Internacional_de_Termas_de_R%C3%ADo_Hondo</ref>
     <ref>https://autodromotermas.com/</ref>
-    <ref>https://www.dazn.com/es-ES/news/motor/circuito-de-termas-de-rio-hondo-donde-esta-como-es-caracteristicas-como-llegar-y-fotos-del-escenario-del-gp-de-argentina-del-mundial-de-motogp/1p956mqia2hde1i5jvq889bz0j</ref>
+    <ref>
+      https://www.dazn.com/es-ES/news/motor/circuito-de-termas-de-rio-hondo-donde-esta-como-es-caracteristicas-como-llegar-y-fotos-del-escenario-del-gp-de-argentina-del-mundial-de-motogp/1p956mqia2hde1i5jvq889bz0j</ref>
   </referencias>
 
   <galeriaFotos>
-    <foto archivo="multimedia/panoramica-1.jpg" titulo="Panorámica 1" tipo="jpg"/>
+    <foto archivo="multimedia/panoramica-1.jpg" titulo="Panorámica 1" tipo="jpg" />
     <foto archivo="multimedia/panoramica-2.jpg" titulo="Panorámica 2" tipo="jpg" />
     <foto archivo="multimedia/panoramica-3.jpg" titulo="Panorámica 3" tipo="jpg" />
     <foto archivo="multimedia/panoramica-4.jpg" titulo="Panorámica 4" tipo="jpg" />
@@ -32,76 +33,455 @@
   </galeriaFotos>
 
   <galeriaVideos>
-    <video archivo="multimedia/patadaMarquez.mp4" titulo="Patada de Marc Marquez a Valentino Rossi" tipo="mp4"/>
+    <video archivo="multimedia/patadaMarquez.mp4" titulo="Patada de Marc Marquez a Valentino Rossi"
+      tipo="mp4" />
   </galeriaVideos>
 
-    <!-- Coordenadas exactas del centro de la pista en la línea de salida -->
+  <!-- Coordenadas exactas del centro de la pista en la línea de salida -->
   <puntoOrigen>
     <longitudGeo>-64.91818905854689</longitudGeo>
     <latitudGeo>-27.51135130813497</latitudGeo>
     <altitudMSNM unidad="metros">270</altitudMSNM>
   </puntoOrigen>
 
-    <!-- Tramos: ejemplo con distancias que suman la longitud total (4806 m).
+  <!-- Tramos: ejemplo con distancias que suman la longitud total (4806 m).
        Coordenadas de punto final aproximadas para ilustración. -->
   <tramos>
-    <tramo id="t1">
-      <distancia unidad="metros">600</distancia>
+    <tramo>
+      <distancia unidad="metros">218</distancia>
       <puntoFinal>
-        <longitudGeo>-64.9288</longitudGeo>
-        <latitudGeo>-27.5136</latitudGeo>
-        <altitudMSNM unidad="metros">270</altitudMSNM>
+        <longitudGeo>-64.916104</longitudGeo>
+        <latitudGeo>-27.512013</latitudGeo>
+        <altitudMSNM unidad="metros">282</altitudMSNM>
       </puntoFinal>
       <sector>1</sector>
     </tramo>
-    <tramo id="t2">
-      <distancia unidad="metros">850</distancia>
+    <tramo>
+      <distancia unidad="metros">64</distancia>
       <puntoFinal>
-        <longitudGeo>-64.9271</longitudGeo>
-        <latitudGeo>-27.5130</latitudGeo>
-        <altitudMSNM unidad="metros">271</altitudMSNM>
+        <longitudGeo>-64.915884</longitudGeo>
+        <latitudGeo>-27.512552</latitudGeo>
+        <altitudMSNM unidad="metros">283</altitudMSNM>
       </puntoFinal>
       <sector>1</sector>
     </tramo>
-    <tramo id="t3">
-      <distancia unidad="metros">950</distancia>
+    <tramo>
+      <distancia unidad="metros">46</distancia>
       <puntoFinal>
-        <longitudGeo>-64.9263</longitudGeo>
-        <latitudGeo>-27.5142</latitudGeo>
-        <altitudMSNM unidad="metros">270</altitudMSNM>
+        <longitudGeo>-64.915619</longitudGeo>
+        <latitudGeo>-27.512896</latitudGeo>
+        <altitudMSNM unidad="metros">284</altitudMSNM>
+      </puntoFinal>
+      <sector>1</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">39</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.915222</longitudGeo>
+        <latitudGeo>-27.512904</latitudGeo>
+        <altitudMSNM unidad="metros">285</altitudMSNM>
+      </puntoFinal>
+      <sector>1</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">58</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.915011</longitudGeo>
+        <latitudGeo>-27.512421</latitudGeo>
+        <altitudMSNM unidad="metros">286</altitudMSNM>
+      </puntoFinal>
+      <sector>1</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">99</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.915115</longitudGeo>
+        <latitudGeo>-27.511534</latitudGeo>
+        <altitudMSNM unidad="metros">287</altitudMSNM>
+      </puntoFinal>
+      <sector>1</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">112</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.915603</longitudGeo>
+        <latitudGeo>-27.510623</latitudGeo>
+        <altitudMSNM unidad="metros">288</altitudMSNM>
+      </puntoFinal>
+      <sector>1</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">171</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.916428</longitudGeo>
+        <latitudGeo>-27.509267</latitudGeo>
+        <altitudMSNM unidad="metros">289</altitudMSNM>
+      </puntoFinal>
+      <sector>1</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">83</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.916548</longitudGeo>
+        <latitudGeo>-27.508525</latitudGeo>
+        <altitudMSNM unidad="metros">290</altitudMSNM>
+      </puntoFinal>
+      <sector>1</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">54</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.916381</longitudGeo>
+        <latitudGeo>-27.508064</latitudGeo>
+        <altitudMSNM unidad="metros">291</altitudMSNM>
+      </puntoFinal>
+      <sector>1</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">64</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.915993</longitudGeo>
+        <latitudGeo>-27.507608</latitudGeo>
+        <altitudMSNM unidad="metros">281</altitudMSNM>
+      </puntoFinal>
+      <sector>1</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">53</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.915528</longitudGeo>
+        <latitudGeo>-27.507369</latitudGeo>
+        <altitudMSNM unidad="metros">282</altitudMSNM>
+      </puntoFinal>
+      <sector>1</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">122</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.914299</longitudGeo>
+        <latitudGeo>-27.507249</latitudGeo>
+        <altitudMSNM unidad="metros">283</altitudMSNM>
       </puntoFinal>
       <sector>2</sector>
     </tramo>
-    <tramo id="t4">
-      <distancia unidad="metros">700</distancia>
+    <tramo>
+      <distancia unidad="metros">90</distancia>
       <puntoFinal>
-        <longitudGeo>-64.9275</longitudGeo>
-        <latitudGeo>-27.5153</latitudGeo>
-        <altitudMSNM unidad="metros">269</altitudMSNM>
+        <longitudGeo>-64.913473</longitudGeo>
+        <latitudGeo>-27.506902</latitudGeo>
+        <altitudMSNM unidad="metros">284</altitudMSNM>
       </puntoFinal>
       <sector>2</sector>
     </tramo>
-    <tramo id="t5">
-      <distancia unidad="metros">900</distancia>
+    <tramo>
+      <distancia unidad="metros">42</distancia>
       <puntoFinal>
-        <longitudGeo>-64.9291</longitudGeo>
-        <latitudGeo>-27.5150</latitudGeo>
-        <altitudMSNM unidad="metros">269</altitudMSNM>
+        <longitudGeo>-64.913087</longitudGeo>
+        <latitudGeo>-27.506732</latitudGeo>
+        <altitudMSNM unidad="metros">285</altitudMSNM>
+      </puntoFinal>
+      <sector>2</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">39</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.912712</longitudGeo>
+        <latitudGeo>-27.506848</latitudGeo>
+        <altitudMSNM unidad="metros">286</altitudMSNM>
+      </puntoFinal>
+      <sector>2</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">93</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.912184</longitudGeo>
+        <latitudGeo>-27.507538</latitudGeo>
+        <altitudMSNM unidad="metros">287</altitudMSNM>
+      </puntoFinal>
+      <sector>2</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">130</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.911424</longitudGeo>
+        <latitudGeo>-27.50849</latitudGeo>
+        <altitudMSNM unidad="metros">288</altitudMSNM>
+      </puntoFinal>
+      <sector>2</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">58</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.911002</longitudGeo>
+        <latitudGeo>-27.508856</latitudGeo>
+        <altitudMSNM unidad="metros">289</altitudMSNM>
+      </puntoFinal>
+      <sector>2</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">53</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.910492</longitudGeo>
+        <latitudGeo>-27.508995</latitudGeo>
+        <altitudMSNM unidad="metros">290</altitudMSNM>
+      </puntoFinal>
+      <sector>2</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">73</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.909771</longitudGeo>
+        <latitudGeo>-27.508856</latitudGeo>
+        <altitudMSNM unidad="metros">291</altitudMSNM>
+      </puntoFinal>
+      <sector>2</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">45</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.909468</longitudGeo>
+        <latitudGeo>-27.508559</latitudGeo>
+        <altitudMSNM unidad="metros">281</altitudMSNM>
+      </puntoFinal>
+      <sector>2</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">123</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.910082</longitudGeo>
+        <latitudGeo>-27.507598</latitudGeo>
+        <altitudMSNM unidad="metros">282</altitudMSNM>
+      </puntoFinal>
+      <sector>2</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">152</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.910899</longitudGeo>
+        <latitudGeo>-27.506434</latitudGeo>
+        <altitudMSNM unidad="metros">283</altitudMSNM>
+      </puntoFinal>
+      <sector>2</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">79</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.911185</longitudGeo>
+        <latitudGeo>-27.505771</latitudGeo>
+        <altitudMSNM unidad="metros">284</altitudMSNM>
       </puntoFinal>
       <sector>3</sector>
     </tramo>
-    <tramo id="t6">
-      <distancia unidad="metros">806</distancia>
+    <tramo>
+      <distancia unidad="metros">97</distancia>
       <puntoFinal>
-        <longitudGeo>-64.9300</longitudGeo>
-        <latitudGeo>-27.5140</latitudGeo>
-        <altitudMSNM unidad="metros">270</altitudMSNM>
+        <longitudGeo>-64.911279</longitudGeo>
+        <latitudGeo>-27.504899</latitudGeo>
+        <altitudMSNM unidad="metros">285</altitudMSNM>
       </puntoFinal>
       <sector>3</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">91</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.910994</longitudGeo>
+        <latitudGeo>-27.504124</latitudGeo>
+        <altitudMSNM unidad="metros">286</altitudMSNM>
+      </puntoFinal>
+      <sector>3</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">60</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.910651</longitudGeo>
+        <latitudGeo>-27.503676</latitudGeo>
+        <altitudMSNM unidad="metros">287</altitudMSNM>
+      </puntoFinal>
+      <sector>3</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">99</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.909944</longitudGeo>
+        <latitudGeo>-27.503039</latitudGeo>
+        <altitudMSNM unidad="metros">288</altitudMSNM>
+      </puntoFinal>
+      <sector>3</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">60</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.909582</longitudGeo>
+        <latitudGeo>-27.502609</latitudGeo>
+        <altitudMSNM unidad="metros">289</altitudMSNM>
+      </puntoFinal>
+      <sector>3</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">42</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.909684</longitudGeo>
+        <latitudGeo>-27.502242</latitudGeo>
+        <altitudMSNM unidad="metros">290</altitudMSNM>
+      </puntoFinal>
+      <sector>3</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">50</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.910179</longitudGeo>
+        <latitudGeo>-27.502135</latitudGeo>
+        <altitudMSNM unidad="metros">291</altitudMSNM>
+      </puntoFinal>
+      <sector>3</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">630</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.915391</longitudGeo>
+        <latitudGeo>-27.505408</latitudGeo>
+        <altitudMSNM unidad="metros">281</altitudMSNM>
+      </puntoFinal>
+      <sector>3</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">208</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.917095</longitudGeo>
+        <latitudGeo>-27.506513</latitudGeo>
+        <altitudMSNM unidad="metros">282</altitudMSNM>
+      </puntoFinal>
+      <sector>3</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">96</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.917741</longitudGeo>
+        <latitudGeo>-27.50716</latitudGeo>
+        <altitudMSNM unidad="metros">283</altitudMSNM>
+      </puntoFinal>
+      <sector>3</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">77</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.918112</longitudGeo>
+        <latitudGeo>-27.507768</latitudGeo>
+        <altitudMSNM unidad="metros">284</altitudMSNM>
+      </puntoFinal>
+      <sector>3</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">77</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.91841</longitudGeo>
+        <latitudGeo>-27.508409</latitudGeo>
+        <altitudMSNM unidad="metros">285</altitudMSNM>
+      </puntoFinal>
+      <sector>4</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">106</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.917895</longitudGeo>
+        <latitudGeo>-27.509248</latitudGeo>
+        <altitudMSNM unidad="metros">286</altitudMSNM>
+      </puntoFinal>
+      <sector>4</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">59</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.917734</longitudGeo>
+        <latitudGeo>-27.509757</latitudGeo>
+        <altitudMSNM unidad="metros">287</altitudMSNM>
+      </puntoFinal>
+      <sector>4</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">40</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.917889</longitudGeo>
+        <latitudGeo>-27.510092</latitudGeo>
+        <altitudMSNM unidad="metros">288</altitudMSNM>
+      </puntoFinal>
+      <sector>4</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">50</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.918389</longitudGeo>
+        <latitudGeo>-27.510165</latitudGeo>
+        <altitudMSNM unidad="metros">289</altitudMSNM>
+      </puntoFinal>
+      <sector>4</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">140</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.919611</longitudGeo>
+        <latitudGeo>-27.509532</latitudGeo>
+        <altitudMSNM unidad="metros">290</altitudMSNM>
+      </puntoFinal>
+      <sector>4</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">124</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.920785</longitudGeo>
+        <latitudGeo>-27.509134</latitudGeo>
+        <altitudMSNM unidad="metros">291</altitudMSNM>
+      </puntoFinal>
+      <sector>4</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">68</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.921461</longitudGeo>
+        <latitudGeo>-27.509238</latitudGeo>
+        <altitudMSNM unidad="metros">281</altitudMSNM>
+      </puntoFinal>
+      <sector>4</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">55</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.92171</longitudGeo>
+        <latitudGeo>-27.509682</latitudGeo>
+        <altitudMSNM unidad="metros">282</altitudMSNM>
+      </puntoFinal>
+      <sector>4</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">67</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.921481</longitudGeo>
+        <latitudGeo>-27.510248</latitudGeo>
+        <altitudMSNM unidad="metros">283</altitudMSNM>
+      </puntoFinal>
+      <sector>4</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">252</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.919091</longitudGeo>
+        <latitudGeo>-27.511041</latitudGeo>
+        <altitudMSNM unidad="metros">284</altitudMSNM>
+      </puntoFinal>
+      <sector>4</sector>
+    </tramo>
+    <tramo>
+      <distancia unidad="metros">95</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.918189</longitudGeo>
+        <latitudGeo>-27.511351</latitudGeo>
+        <altitudMSNM unidad="metros">285</altitudMSNM>
+      </puntoFinal>
+      <sector>4</sector>
     </tramo>
   </tramos>
 
-    <!-- Pendiente de actualizar tras la carrera -->
+  <!-- Pendiente de actualizar tras la carrera -->
   <vencedor>
     <piloto>Marc Marquez</piloto>
     <tiempoTotal formato="HH:MM:SS.mmm">00:41:11.100</tiempoTotal>
