@@ -25,15 +25,15 @@
   </referencias>
 
   <galeriaFotos>
-    <foto archivo="multimedia/panoramica-1.jpg" titulo="Panorámica 1" tipo="jpg" />
-    <foto archivo="multimedia/panoramica-2.jpg" titulo="Panorámica 2" tipo="jpg" />
-    <foto archivo="multimedia/panoramica-3.jpg" titulo="Panorámica 3" tipo="jpg" />
-    <foto archivo="multimedia/panoramica-4.jpg" titulo="Panorámica 4" tipo="jpg" />
-    <foto archivo="multimedia/argentina-motogp.webp" titulo="Plano del circuito" tipo="webp" />
+    <foto archivo="../multimedia/panoramica-1.jpg" titulo="Panorámica 1" tipo="jpg" />
+    <foto archivo="../multimedia/panoramica-2.jpg" titulo="Panorámica 2" tipo="jpg" />
+    <foto archivo="../multimedia/panoramica-3.jpg" titulo="Panorámica 3" tipo="jpg" />
+    <foto archivo="../multimedia/panoramica-4.jpg" titulo="Panorámica 4" tipo="jpg" />
+    <foto archivo="../multimedia/argentina-motogp.webp" titulo="Plano del circuito" tipo="webp" />
   </galeriaFotos>
 
   <galeriaVideos>
-    <video archivo="multimedia/patadaMarquez.mp4" titulo="Patada de Marc Marquez a Valentino Rossi"
+    <video archivo="../multimedia/patadaMarquez.mp4" titulo="Patada de Marc Marquez a Valentino Rossi"
       tipo="mp4" />
   </galeriaVideos>
 

@@ -1,11 +1,3 @@
-<!--
-  DTD para describir la gramática del archivo circuito.xml.
-  Pensado para facilitar:
-    - Parsing en Python (elementos y atributos con nombres consistentes en minúsculas, sin espacios ni
-acentos).
-    - Migración futura a XML Schema (XSD) manteniendo la misma estructura.
--->
-
 <!ELEMENT circuito (nombre, longitud, anchuraMedia, fechaCarrera, horaInicio, vueltas, localidad, pais, patrocinador, referencias, galeriaFotos, galeriaVideos, puntoOrigen, tramos, vencedor, clasificacionMundial)>
 <!ATTLIST circuito
   version CDATA #IMPLIED
