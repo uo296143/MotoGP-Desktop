@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE circuito SYSTEM "circuito.dtd">
+<circuito version="1.0" xml:lang="es">
+  <nombre>Autódromo Internacional de Termas de Río Hondo</nombre>
+
+  <!-- Medidas principales: usar números enteros (metros) para facilitar validación y cálculo -->
+  <longitud unidad="metros">4806</longitud>
+  <anchuraMedia unidad="metros">16</anchuraMedia>
+
+  <!-- Fechas/horas en formato ISO (facilita parsing con datetime) -->
+  <fechaCarrera formato="YYYY-MM-DD" calendario="gregoriano">2025-04-13</fechaCarrera>
+  <horaInicio formato="HH:MM" zona="Europe/Madrid">20:00</horaInicio>
+
+  <vueltas>25</vueltas>
+
+  <localidad>Termas de Río Hondo</localidad>
+  <pais>Argentina</pais>
+  <patrocinador>Turismo Santiago del Estero</patrocinador>
+
+  <referencias>
+    <ref>https://es.wikipedia.org/wiki/Aut%C3%B3dromo_Internacional_de_Termas_de_R%C3%ADo_Hondo</ref>
+    <ref>https://autodromotermas.com/</ref>
+    <ref>https://www.dazn.com/es-ES/news/motor/circuito-de-termas-de-rio-hondo-donde-esta-como-es-caracteristicas-como-llegar-y-fotos-del-escenario-del-gp-de-argentina-del-mundial-de-motogp/1p956mqia2hde1i5jvq889bz0j</ref>
+  </referencias>
+
+  <galeriaFotos>
+    <foto archivo="multimedia/panoramica-1.jpg" titulo="Panorámica 1" tipo="jpg"/>
+    <foto archivo="multimedia/panoramica-2.jpg" titulo="Panorámica 2" tipo="jpg" />
+    <foto archivo="multimedia/panoramica-3.jpg" titulo="Panorámica 3" tipo="jpg" />
+    <foto archivo="multimedia/panoramica-4.jpg" titulo="Panorámica 4" tipo="jpg" />
+    <foto archivo="multimedia/argentina-motogp.webp" titulo="Plano del circuito" tipo="webp" />
+  </galeriaFotos>
+
+  <galeriaVideos>
+    <video archivo="multimedia/patadaMarquez.mp4" titulo="Patada de Marc Marquez a Valentino Rossi" tipo="mp4"/>
+  </galeriaVideos>
+
+    <!-- Coordenadas exactas del centro de la pista en la línea de salida -->
+  <puntoOrigen>
+    <longitudGeo>-64.91818905854689</longitudGeo>
+    <latitudGeo>-27.51135130813497</latitudGeo>
+    <altitudMSNM unidad="metros">270</altitudMSNM>
+  </puntoOrigen>
+
+    <!-- Tramos: ejemplo con distancias que suman la longitud total (4806 m).
+       Coordenadas de punto final aproximadas para ilustración. -->
+  <tramos>
+    <tramo id="t1">
+      <distancia unidad="metros">600</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.9288</longitudGeo>
+        <latitudGeo>-27.5136</latitudGeo>
+        <altitudMSNM unidad="metros">270</altitudMSNM>
+      </puntoFinal>
+      <sector>1</sector>
+    </tramo>
+    <tramo id="t2">
+      <distancia unidad="metros">850</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.9271</longitudGeo>
+        <latitudGeo>-27.5130</latitudGeo>
+        <altitudMSNM unidad="metros">271</altitudMSNM>
+      </puntoFinal>
+      <sector>1</sector>
+    </tramo>
+    <tramo id="t3">
+      <distancia unidad="metros">950</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.9263</longitudGeo>
+        <latitudGeo>-27.5142</latitudGeo>
+        <altitudMSNM unidad="metros">270</altitudMSNM>
+      </puntoFinal>
+      <sector>2</sector>
+    </tramo>
+    <tramo id="t4">
+      <distancia unidad="metros">700</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.9275</longitudGeo>
+        <latitudGeo>-27.5153</latitudGeo>
+        <altitudMSNM unidad="metros">269</altitudMSNM>
+      </puntoFinal>
+      <sector>2</sector>
+    </tramo>
+    <tramo id="t5">
+      <distancia unidad="metros">900</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.9291</longitudGeo>
+        <latitudGeo>-27.5150</latitudGeo>
+        <altitudMSNM unidad="metros">269</altitudMSNM>
+      </puntoFinal>
+      <sector>3</sector>
+    </tramo>
+    <tramo id="t6">
+      <distancia unidad="metros">806</distancia>
+      <puntoFinal>
+        <longitudGeo>-64.9300</longitudGeo>
+        <latitudGeo>-27.5140</latitudGeo>
+        <altitudMSNM unidad="metros">270</altitudMSNM>
+      </puntoFinal>
+      <sector>3</sector>
+    </tramo>
+  </tramos>
+
+    <!-- Pendiente de actualizar tras la carrera -->
+  <vencedor>
+    <piloto>Marc Marquez</piloto>
+    <tiempoTotal formato="HH:MM:SS.mmm">00:41:11.100</tiempoTotal>
+  </vencedor>
+
+  <clasificacionMundial>
+    <pos1>
+      <piloto>Marc Marquez</piloto>
+    </pos1>
+    <pos2>
+      <piloto>Alex Marquez</piloto>
+    </pos2>
+    <pos3>
+      <piloto>Franco Morbidelli</piloto>
+    </pos3>
+  </clasificacionMundial>
+</circuito>
