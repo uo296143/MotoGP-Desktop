@@ -2,8 +2,9 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	targetNamespace="http://www.uniovi.es"
 	xmlns="http://www.uniovi.es"
-	elementFormDefault="qualified">	
+	elementFormDefault="qualified">
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+
 	<xs:element name="circuito">
 		<xs:complexType>
 			<xs:sequence>
@@ -28,78 +29,93 @@
 			<xs:attribute ref="xml:lang" />
 		</xs:complexType>
 	</xs:element>
+
 	<xs:element name="nombre" type="xs:string" />
+
+	<xs:simpleType name="LongitudValue">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="3600" />
+			<xs:maxInclusive value="6000" />
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:element name="longitud">
 		<xs:complexType>
 			<xs:simpleContent>
-				<xs:restriction base="xs:integer">
-					<xs:minInclusive value="3000"/>
-					<xs:maxInclusive value="6000"/>
-					<xs:attribute name="unidad" use="required" fixed="metros" />
-				</xs:restriction>
-			</xs:simpleContent>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="anchuraMedia">
-		<xs:complexType>
-			<xs:simpleContent>
-				<xs:restriction base="xs:integer">
-					<xs:minInclusive value="5"/>
-					<xs:maxInclusive value="50"/>
-					<xs:attribute name="unidad" use="required" fixed="metros" />
-				</xs:restriction>
-			</xs:simpleContent>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="fechaCarrera">
-		<xs:complexType>
-			<xs:simpleContent>
-				<xs:restriction base="xs:date">
-					<xs:minInclusive value="2025-03-02"/>
-					<xs:maxInclusive value="2025-11-16"/>
-					<xs:attribute name="calendario">
-						<xs:simpleType>
-							<xs:restriction base="xs:NMTOKEN">
-								<xs:enumeration value="gregoriano" />
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:attribute>
-				</xs:restriction>
-			</xs:simpleContent>
-		</xs:complexType>
-	</xs:element>
-	<xs:element name="horaInicio">
-		<xs:complexType>
-			<xs:simpleContent>
-				<xs:extension base="xs:time">
-					<xs:attribute name="zona" type="xs:string" />
+				<xs:extension base="LongitudValue">
+					<xs:attribute name="unidad" type="xs:string" use="required" fixed="metros" />
 				</xs:extension>
 			</xs:simpleContent>
 		</xs:complexType>
 	</xs:element>
+
+	<xs:simpleType name="AnchuraValue">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="5" />
+			<xs:maxInclusive value="50" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="anchuraMedia">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="AnchuraValue">
+					<xs:attribute name="unidad" type="xs:string" use="required" fixed="metros" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:simpleType name="FechaCarreraValue">
+		<xs:restriction base="xs:date">
+			<xs:minInclusive value="2025-03-02" />
+			<xs:maxInclusive value="2025-11-16" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="fechaCarrera">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="FechaCarreraValue" />
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="horaInicio">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:time">
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+
 	<xs:element name="vueltas">
 		<xs:simpleType>
 			<xs:restriction base="xs:integer">
-				<xs:minInclusive value="20"/>
-				<xs:maxInclusive value="30"/>
+				<xs:minInclusive value="20" />
+				<xs:maxInclusive value="30" />
 			</xs:restriction>
 		</xs:simpleType>
 	</xs:element>
+
 	<xs:element name="localidad" type="xs:string" />
+
 	<xs:element name="pais" type="xs:string" />
+
 	<xs:element name="patrocinador" type="xs:string" />
-	<xs:element name="ref" type="xs:anyURI"/>
+
+	<xs:element name="ref" type="xs:anyURI" />
+
 	<xs:element name="referencias">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="ref" minOccurs="3" maxOccurs="unbounded"/>
+				<xs:element ref="ref" minOccurs="3" maxOccurs="unbounded" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:element name="galeriaFotos">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element minOccurs="1" maxOccurs="5" ref="foto" />
+				<xs:element maxOccurs="5" ref="foto" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
@@ -120,6 +136,7 @@
 			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:element name="galeriaVideos">
 		<xs:complexType>
 			<xs:sequence>
@@ -143,6 +160,7 @@
 			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:element name="puntoOrigen">
 		<xs:complexType>
 			<xs:sequence>
@@ -152,26 +170,36 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:element name="longitudGeo" type="xs:string" />
+
 	<xs:element name="latitudGeo" type="xs:string" />
+
+	<xs:simpleType name="AltitudValue">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0" />
+			<xs:maxInclusive value="2000" />
+		</xs:restriction>
+	</xs:simpleType>
+
 	<xs:element name="altitudMSNM">
 		<xs:complexType>
 			<xs:simpleContent>
-				<xs:restriction base="xs:integer">
-					<xs:minInclusive value="0"/>
-					<xs:maxInclusive value="2000"/>
+				<xs:extension base="AltitudValue">
 					<xs:attribute name="unidad" use="required" fixed="metros" />
-				</xs:restriction>
+				</xs:extension>
 			</xs:simpleContent>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:element name="tramos">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element minOccurs="1" maxOccurs="unbounded" ref="tramo" />
+				<xs:element maxOccurs="unbounded" ref="tramo" />
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:element name="tramo">
 		<xs:complexType>
 			<xs:sequence>
@@ -181,6 +209,7 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:element name="distancia">
 		<xs:complexType>
 			<xs:simpleContent>
@@ -196,6 +225,7 @@
 			</xs:simpleContent>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:element name="puntoFinal">
 		<xs:complexType>
 			<xs:sequence>
@@ -205,7 +235,9 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:element name="sector" type="xs:string" />
+
 	<xs:element name="vencedor">
 		<xs:complexType>
 			<xs:sequence>
@@ -214,22 +246,17 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:element name="piloto" type="xs:string" />
+
 	<xs:element name="tiempoTotal">
 		<xs:complexType>
 			<xs:simpleContent>
-				<xs:extension base="xs:string">
-					<xs:attribute name="formato">
-						<xs:simpleType>
-							<xs:restriction base="xs:NMTOKEN">
-								<xs:enumeration value="HH:MM:SS.mmm" />
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:attribute>
-				</xs:extension>
+				<xs:extension base="xs:duration" />
 			</xs:simpleContent>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:element name="clasificacionMundial">
 		<xs:complexType>
 			<xs:sequence>
@@ -239,6 +266,7 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:element name="pos1">
 		<xs:complexType>
 			<xs:sequence>
@@ -246,6 +274,7 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:element name="pos2">
 		<xs:complexType>
 			<xs:sequence>
@@ -253,6 +282,7 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
+
 	<xs:element name="pos3">
 		<xs:complexType>
 			<xs:sequence>
@@ -260,19 +290,5 @@
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="puntos">
-		<xs:complexType>
-			<xs:simpleContent>
-				<xs:extension base="xs:string">
-					<xs:attribute name="unidad">
-						<xs:simpleType>
-							<xs:restriction base="xs:NMTOKEN">
-								<xs:enumeration value="pts" />
-							</xs:restriction>
-						</xs:simpleType>
-					</xs:attribute>
-				</xs:extension>
-			</xs:simpleContent>
-		</xs:complexType>
-	</xs:element>
+
 </xs:schema>

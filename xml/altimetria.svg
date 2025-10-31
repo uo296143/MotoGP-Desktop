@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" version="2.0">
+  <rect x="0" y="0" width="1100" height="480" fill="#f9fafc" strokeWidth="0" stroke="none" />
+  <rect x="90" y="60" width="970" height="330" fill="#ffffff" strokeWidth="1" stroke="#ccd3db" />
+  <line x1="190.97855506974807" y1="60" x2="190.97855506974807" y2="390" stroke="#e8edf3" strokeWidth="1" />
+  <text x="172.97855506974807" y="420" fontFamily="Verdana" fontSize="12" style="fill:#444;">500 m</text>
+  <line x1="291.95711013949614" y1="60" x2="291.95711013949614" y2="390" stroke="#e8edf3" strokeWidth="1" />
+  <text x="273.95711013949614" y="420" fontFamily="Verdana" fontSize="12" style="fill:#444;">1 km</text>
+  <line x1="392.93566520924423" y1="60" x2="392.93566520924423" y2="390" stroke="#e8edf3" strokeWidth="1" />
+  <text x="374.93566520924423" y="420" fontFamily="Verdana" fontSize="12" style="fill:#444;">1500 m</text>
+  <line x1="493.9142202789923" y1="60" x2="493.9142202789923" y2="390" stroke="#e8edf3" strokeWidth="1" />
+  <text x="475.9142202789923" y="420" fontFamily="Verdana" fontSize="12" style="fill:#444;">2 km</text>
+  <line x1="594.8927753487403" y1="60" x2="594.8927753487403" y2="390" stroke="#e8edf3" strokeWidth="1" />
+  <text x="576.8927753487403" y="420" fontFamily="Verdana" fontSize="12" style="fill:#444;">2500 m</text>
+  <line x1="695.8713304184885" y1="60" x2="695.8713304184885" y2="390" stroke="#e8edf3" strokeWidth="1" />
+  <text x="677.8713304184885" y="420" fontFamily="Verdana" fontSize="12" style="fill:#444;">3 km</text>
+  <line x1="796.8498854882365" y1="60" x2="796.8498854882365" y2="390" stroke="#e8edf3" strokeWidth="1" />
+  <text x="778.8498854882365" y="420" fontFamily="Verdana" fontSize="12" style="fill:#444;">3500 m</text>
+  <line x1="897.8284405579845" y1="60" x2="897.8284405579845" y2="390" stroke="#e8edf3" strokeWidth="1" />
+  <text x="879.8284405579845" y="420" fontFamily="Verdana" fontSize="12" style="fill:#444;">4 km</text>
+  <line x1="998.8069956277327" y1="60" x2="998.8069956277327" y2="390" stroke="#e8edf3" strokeWidth="1" />
+  <text x="980.8069956277327" y="420" fontFamily="Verdana" fontSize="12" style="fill:#444;">4500 m</text>
+  <line x1="1060.0" y1="60" x2="1060.0" y2="390" stroke="#e8edf3" strokeWidth="1" />
+  <line x1="90" y1="366.42857142857144" x2="1060" y2="366.42857142857144" stroke="#edf1f5" strokeWidth="1" />
+  <line x1="90" y1="319.2857142857143" x2="1060" y2="319.2857142857143" stroke="#edf1f5" strokeWidth="1" />
+  <line x1="90" y1="272.1428571428571" x2="1060" y2="272.1428571428571" stroke="#edf1f5" strokeWidth="1" />
+  <line x1="90" y1="225.0" x2="1060" y2="225.0" stroke="#edf1f5" strokeWidth="1" />
+  <line x1="90" y1="177.85714285714286" x2="1060" y2="177.85714285714286" stroke="#edf1f5" strokeWidth="1" />
+  <line x1="90" y1="130.71428571428572" x2="1060" y2="130.71428571428572" stroke="#edf1f5" strokeWidth="1" />
+  <text x="35" y="346.85714285714283" fontFamily="Verdana" fontSize="12" style="fill:#444;">281 m</text>
+  <text x="35" y="111.14285714285717" fontFamily="Verdana" fontSize="12" style="fill:#444;">291 m</text>
+  <line x1="90" y1="390" x2="1060" y2="390" stroke="#222" strokeWidth="2" />
+  <line x1="90" y1="60" x2="90" y2="390" stroke="#222" strokeWidth="2" />
+  <polyline points="90.00,248.57 134.03,319.29 146.95,295.71 156.24,272.14 164.12,248.57 175.83,225.00 195.83,201.43 218.44,177.86 252.98,154.29 269.74,130.71 280.65,107.14 293.57,342.86 304.28,319.29 328.92,295.71 347.09,272.14 355.57,248.57 363.45,225.00 382.23,201.43 408.49,177.86 420.20,154.29 430.90,130.71 445.65,107.14 454.73,342.86 479.58,319.29 510.27,295.71 526.23,272.14 545.82,248.57 564.20,225.00 576.31,201.43 596.31,177.86 608.42,154.29 616.91,130.71 627.00,107.14 754.24,342.86 796.24,319.29 815.63,295.71 831.18,272.14 846.73,248.57 868.14,225.00 880.06,201.43 888.13,177.86 898.23,154.29 926.51,130.71 951.55,107.14 965.28,342.86 976.39,319.29 989.92,295.71 1040.81,272.14 1060.00,248.57" stroke="#0066ff" strokeWidth="2" fill="none" />
+  <polyline points="90.00,248.57 134.03,319.29 146.95,295.71 156.24,272.14 164.12,248.57 175.83,225.00 195.83,201.43 218.44,177.86 252.98,154.29 269.74,130.71 280.65,107.14 293.57,342.86 304.28,319.29 328.92,295.71 347.09,272.14 355.57,248.57 363.45,225.00 382.23,201.43 408.49,177.86 420.20,154.29 430.90,130.71 445.65,107.14 454.73,342.86 479.58,319.29 510.27,295.71 526.23,272.14 545.82,248.57 564.20,225.00 576.31,201.43 596.31,177.86 608.42,154.29 616.91,130.71 627.00,107.14 754.24,342.86 796.24,319.29 815.63,295.71 831.18,272.14 846.73,248.57 868.14,225.00 880.06,201.43 888.13,177.86 898.23,154.29 926.51,130.71 951.55,107.14 965.28,342.86 976.39,319.29 989.92,295.71 1040.81,272.14 1060.00,248.57 1060.00,390.00 90.00,390.00" stroke="#cce0ff" strokeWidth="1" fill="#e6f0ff" />
+  <text x="390.0" y="28" fontFamily="Verdana" fontSize="22" style="font-weight:bold; fill:#111;">Altimetría del circuito</text>
+  <text x="290.0" y="52" fontFamily="Verdana" fontSize="13" style="fill:#555;">Distancia: 4803 m  |  Altitud: 281–291 m  |  +43 m / -43 m</text>
+  <text x="495.0" y="455" fontFamily="Verdana" fontSize="14" style="fill:#333;">Distancia acumulada (m)</text>
+  <text x="25" y="225.0" fontFamily="Verdana" fontSize="14" style="writing-mode:tb; glyph-orientation-vertical:0; fill:#333;">Altitud (m)</text>
+  <text x="60.0" y="438" fontFamily="Verdana" fontSize="12" style="fill:#111;">ORIGEN</text>
+  <line x1="90.0" y1="390" x2="90.0" y2="400" stroke="#222" strokeWidth="2" />
+  <text x="1050.0" y="438" fontFamily="Verdana" fontSize="12" style="fill:#111;">FIN</text>
+  <line x1="1060.0" y1="390" x2="1060.0" y2="400" stroke="#222" strokeWidth="2" />
+</svg>

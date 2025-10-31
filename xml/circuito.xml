@@ -9,6 +9,7 @@
 
   <!-- Fechas/horas en formato ISO (facilita parsing con datetime) -->
   <fechaCarrera formato="YYYY-MM-DD" calendario="gregoriano">2025-04-13</fechaCarrera>
+  <!-- Hay que añadirle los segundos -->
   <horaInicio formato="HH:MM" zona="Europe/Madrid">20:00</horaInicio>
 
   <vueltas>25</vueltas>
@@ -33,7 +34,8 @@
   </galeriaFotos>
 
   <galeriaVideos>
-    <video archivo="../multimedia/patadaMarquez.mp4" titulo="Patada de Marc Marquez a Valentino Rossi"
+    <video archivo="../multimedia/patadaMarquez.mp4"
+      titulo="Patada de Marc Marquez a Valentino Rossi"
       tipo="mp4" />
   </galeriaVideos>
 
