@@ -1,0 +1,50 @@
+/* ====== layout-cards.css — SOLO reglas de layout (GRID) ====== */
+
+/* Contenedor del tablero: el <main> que contiene el título y los 12 <article> */
+/* Especificidad 0-0-1 */
+main {
+  display: grid;                                  /* Activa CSS Grid */
+  grid-template-columns: repeat(4, minmax(180px, 1fr));
+                                                  /* 4 columnas iguales (mín 180px, si hay sitio se reparten) */
+  grid-auto-rows: 20em;                           /* Altura de cada fila = altura de una carta (coincide con tu 20em) */
+  gap: 1rem;                                      /* Separación entre celdas */
+  align-content: start;                           /* ‘pega’ la rejilla a la parte superior si sobra altura */
+  justify-items: stretch;                         /* Cada celda ocupa todo el ancho disponible */
+}
+
+/* El primer hijo del main (el título del juego) ocupa la fila completa */
+/* Especificidad 0-1-1 */
+main > :first-child {
+  grid-column: 1 / -1;                            /* De la 1ª a la última columna */
+  margin: 0;                                      /* Evita huecos extra por márgenes del título */
+}
+
+/* Cada carta debe rellenar su celda del grid (anula el 20vw/20em previos) */
+/* Especificidad 0-0-2 */
+main > article {
+  width: 100%;                                    /* Que la carta no fuerce más ancho que su celda */
+  height: 100%;                                   /* Igualamos a grid-auto-rows => las caras 100% encajan */
+  box-sizing: border-box;
+}
+
+/* Evita desbordes horizontales por imágenes dentro de las cartas */
+/* Especificidad 0-0-3 */
+main > article img {
+  max-width: 100%;                                /* Que nunca exceda su contenedor */
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* ====== Adaptabilidad (móvil): 2 columnas x 6 filas ====== 
+  Se está redifiniendo las siguiente propiedades para que en móviles las cartas se distribuyan
+  de otra manera : grid-template-columns, grid-auto-rows y gap.
+*/
+@media (max-width: 768px) {
+  main {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+                                                  /* Dos columnas en pantallas estrechas */
+    grid-auto-rows: 18em;                         /* Ajusta la altura de la carta en móvil (opcional) */
+    gap: 0.875rem;                                /* Un poco menos de separación (opcional) */
+  }
+}

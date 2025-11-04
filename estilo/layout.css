@@ -6,11 +6,13 @@ header{
     justify-content: space-between;
 }
 
+/* Especificidad 0-0-1 */
 h1 {
   flex: 1;                      
   text-align: center;
 }
 
+/* Especificidad 0-0-1 */
 nav {
   display: flex;
   flex: 3;                      
