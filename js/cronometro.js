@@ -5,18 +5,15 @@ class Cronometro {
     }
 
     arrancar() {
-        console.log("ARRANCAR: Llamada recibida."); // <-- AÑADE ESTO
         try {
             this.inicio = Temporal.Now.instant();
         } catch (err) {
             this.inicio = new Date();
         }
         this.corriendo = setInterval(this.actualizar.bind(this), 100);
-        console.log("ARRANCAR: Intervalo iniciado. ID:", this.corriendo); // <-- AÑADE ESTO
     }
 
     actualizar() {
-        console.log("ACTUALIZAR: Bucle en ejecución."); // <-- AÑADE ESTO
         let tiempoActual;
         let duration;
         try {
@@ -28,7 +25,7 @@ class Cronometro {
             duration = tiempoActual.getTime() - this.inicio.getTime();
         }
         this.tiempo = duration
-        mostrar();
+        this.mostrar();
     }
 
     mostrar() {
