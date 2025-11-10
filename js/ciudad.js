@@ -51,32 +51,6 @@ class Ciudad {
   }
 }
 
-/* document.addEventListener("DOMContentLoaded", () => {
-  const termasDeRioHondo = new Ciudad("Termas de Río Hondo", "Argentina", "termense");
-  termasDeRioHondo.rellenarAtributos(36137, { lat: -27.4931, lon: -64.8594 });
-
-  const parrafoCiudad = document.createElement("p");
-  parrafoCiudad.textContent = "Ciudad: " + termasDeRioHondo.getCiudad();
-
-  const parrafoPais = document.createElement("p");
-  parrafoPais.textContent = "País: " + termasDeRioHondo.getPais();
-
-  // Crear un contenedor general
-  const contenedor = document.createElement("section");
-  contenedor.id = "info-ciudad";
-
-  // Añadir elementos
-  contenedor.appendChild(parrafoCiudad);
-  contenedor.appendChild(parrafoPais);
-
-  // Añadir la lista (usando innerHTML)
-  contenedor.insertAdjacentHTML("beforeend", termasDeRioHondo.getInfoSecundaria());
-
-  // Añadir el contenedor al body SIN reemplazar el resto de la página
-  document.body.appendChild(contenedor);
-}); */
-
-
 document.addEventListener("DOMContentLoaded", () => {
   let termasDeRioHondo = new Ciudad("Termas de Río Hondo", "Argentina", "termense");
   termasDeRioHondo.rellenarAtributos(36137, { lat: -27.4931, lon: -64.8594 });
@@ -101,5 +75,4 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(parrafoCiudad);
   document.body.appendChild(parrafoPais);
   document.body.innerHTML += termasDeRioHondo.getInfoSecundaria();
-  //documento.insertAdjacentHTML('beforeend', termasDeRioHondo.getInfoSecundaria());
 });
