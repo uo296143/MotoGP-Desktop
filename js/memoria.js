@@ -1,4 +1,3 @@
-"use strict";
 class Memoria {
 
     constructor() { 
@@ -7,6 +6,8 @@ class Memoria {
         this.segunda_carta = null;
         this.barajarCartas();
         this.tablero_bloqueado = false;
+        this.cronometro = new Cronometro();
+        this.cronometro.arrancar();
     }
 
     /*
@@ -65,7 +66,7 @@ class Memoria {
     }
 
     reiniciarAtributos(){
-        this.tablero_bloqueado = true;
+        this.tablero_bloqueado = false;
         this.primera_carta = null;
         this.segunda_carta = null;
     }
@@ -81,6 +82,7 @@ class Memoria {
         const cards = document.querySelectorAll('main article');
         const cartasReveladas = document.querySelectorAll('main article[data-estado="revelada"]').length;
         if (cartasReveladas === cards.length) {
+            this.cronometro.parar();
             setTimeout(() => {
                 alert('¡Felicidades! Has completado el juego de memoria.');
             }, 300); 
@@ -121,6 +123,4 @@ class Memoria {
     }
 
 }
-
-window.memoria = new Memoria();
 

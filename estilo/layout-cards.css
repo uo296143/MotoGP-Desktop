@@ -16,7 +16,8 @@ main {
 /* Especificidad 0-1-1 */
 main > :first-child {
   grid-column: 1 / -1;                            /* De la 1ª a la última columna */
-  margin: 0;                                      /* Evita huecos extra por márgenes del título */
+  text-align: center;
+  grid-row: 1;
 }
 
 /* Cada carta debe rellenar su celda del grid (anula el 20vw/20em previos) */
@@ -35,6 +36,15 @@ main > article img {
   object-fit: contain;
   display: block;
 }
+
+/* Especificidad 0-1-2 */
+main > p:first-of-type {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 8em;
+  grid-row: 1;
+}
+
 
 /* ====== Adaptabilidad (móvil): 2 columnas x 6 filas ====== 
   Se está redifiniendo las siguiente propiedades para que en móviles las cartas se distribuyan

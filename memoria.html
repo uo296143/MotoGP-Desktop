@@ -14,7 +14,8 @@
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
     <link rel="stylesheet" type="text/css" href="estilo/cards.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout-cards.css" />
-    <script src="js/memoria.js" defer></script>
+    <script src="js/memoria.js"></script>
+    <script src="js/cronometro.js"></script>
 </head>
 
 <body>
@@ -32,6 +33,7 @@
     </header>
     <main>
         <h2>Juego de memoria con cartas</h2>
+        <p>00:00.0</p>
         <!-- Honda (x2) -->
         <article onclick="memoria.voltearCarta(this)">
             <h3>Memory Card</h3>
@@ -92,5 +94,6 @@
             <img src="multimedia/logos/motogp.svg" alt="Logo-MotoGP" />
         </article>
     </main>
+    <script>memoria = new Memoria()</script>
 </body>
 </html>

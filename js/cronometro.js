@@ -1,4 +1,3 @@
-"use strict";
 class Cronometro {
     constructor() {
         this.tiempo = 0;
