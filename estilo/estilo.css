@@ -59,3 +59,8 @@ a{
 a:hover{
     color:#771313;
 }
+
+/* Especificidad 0-0-1 */
+td{
+    text-align: center;
+}

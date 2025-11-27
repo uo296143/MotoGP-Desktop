@@ -9,9 +9,11 @@
     <meta name="keywords" content="MotoGP, motos, piloto, circuitos" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MotoGP</title>
-    <link href="/multimedia/favicon.ico" rel="icon" /> 
+    <link href="multimedia/favicon.ico" rel="icon" /> 
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css">
     <link rel="stylesheet" type="text/css" href="estilo/layout.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="js/carrusel.js"></script>
 </head>
 
 <body>
@@ -27,6 +29,14 @@
             <a href="ayuda.html" title="Página dedicada a la ayuda del sitio web">Ayuda</a>
         </nav>
     </header>
-    <p>En desarrollo</p>
+    <main>
+
+    </main>
+    <script>
+        // Crear el carrusel al cargar la página
+        document.addEventListener("DOMContentLoaded", function() {
+            const carrusel = new Carrusel("MotoGP, Termas de Río Hondo");
+        });
+    </script>
 </body>
-</html>
+</html> 
