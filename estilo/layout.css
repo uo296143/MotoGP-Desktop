@@ -88,4 +88,30 @@ nav {
         /* Opcional: aseguramos que ocupe todo el ancho disponible si está dentro de un contenedor principal */
         width: 95%; 
     }
+
+    /* Selector para garantizar que la imagen (<img> dentro de <article>) ocupe todo el ancho disponible */
+    /* Usamos 'section img' para seleccionar la imagen directamente */
+    /* Especificidad 0-0-2 */
+    section img {
+        width: 100%;
+        height: auto; /* Mantiene la proporción */
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+        /* Estilos de presentación móvil */
+        border-radius: 8px; 
+        object-fit: contain; 
+    }
+
+    /* Estilo para el contenedor del artículo en móvil */
+    /* Usamos 'article' para seleccionar el contenedor */
+    /* Especificidad 0-0-1 */
+    section {
+        padding: 10px;
+        margin: 10px;
+        box-sizing: border-box; /* Asegura que padding no aumente el ancho */
+        max-width: 95vw;
+        /* Opcional: aseguramos que ocupe todo el ancho disponible si está dentro de un contenedor principal */
+        width: 95%; 
+    }
 }

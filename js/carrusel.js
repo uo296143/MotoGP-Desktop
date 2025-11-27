@@ -19,7 +19,7 @@ class Carrusel {
     #getFotografias() {
 
         const flickrAPI = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-        //var flickAPI = "https://www.flickr.com/services/rest/?method=flickr.test.echo&name=value"
+
         $.getJSON(flickrAPI,
             {
                 tags: this.#busqueda,
@@ -78,7 +78,7 @@ class Carrusel {
             .attr("title", `Autor: ${primeraFoto.autor}`);
 
         // Creamos el <article> contenedor
-        const articulo = $("<article>")
+        const article = $("<article>")
             .append(titulo)
             .append(imagen);
 
@@ -86,7 +86,7 @@ class Carrusel {
 
         // NOTA: Se asume que existe un contenedor principal en el HTML con el ID #carrusel-container.
         // Si no existe, se puede cambiar a $('body').append(articulo);
-        $('body main').append(articulo);
+        $('body main').append(article);
 
         setInterval(() => {
             this.#cambiarFotografia();
