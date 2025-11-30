@@ -12,6 +12,8 @@
     <link href="multimedia/favicon.ico" rel="icon" /> 
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css">
     <link rel="stylesheet" type="text/css" href="estilo/layout.css">
+    <script src="js/circuito.js" defer></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgo5k1qvWbchEVghI0Ol3gOzLi5cIC5BE&callback=initMapKML&loading=async"></script>
 </head>
 
 <body>
@@ -30,6 +32,27 @@
     <!-- Migas de navegación -->
     <p>Estás en: <a href="index.html" title="Página principal">Inicio</a> | <strong>Circuito</strong></p>
     <h2>Circuitos de MotoGP-Desktop</h2>
-    <p>En desarrollo</p>
+    <main>
+        <label>Selecciona el archivo infoCircuito.html:</label>
+        <input type="file" accept=".html,text/html" />
+        <label>Selecciona el archivo altimetria.svg:</label>
+        <input type="file" accept="image/svg+xml" title="Selector de Archivo SVG" />
+        <label>Selecciona el archivo circuito.kml:</label>
+        <input type="file" accept=".kml" onchange="cargadorKML.leerArchivoKML(this.files);">
+        <article>
+
+        </article>
+       
+        <div>
+            
+        </div>
+
+    </main>
+            
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const circuito = new Circuito();
+        });
+    </script>
 </body>
 </html>

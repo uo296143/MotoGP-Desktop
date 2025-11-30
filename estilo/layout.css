@@ -1,4 +1,3 @@
-
 /* Especificidad 0-0-1 */
 header{
     display: flex;
@@ -20,6 +19,53 @@ nav {
   align-items: center;           
 }
 
+/* Especificidad 0-1-1 */
+input[type="file"] { 
+    margin-top: 10px; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    display: block; 
+    width: 100%; 
+}
+
+/* Especificidad 0-0-2 */
+article svg {
+    display: block;
+    width: 100%;
+    height: auto !important; 
+}
+
+/* Especificidad 0-0-1 */
+article.has-svg {
+    display: block; 
+    min-height: 0; 
+    overflow: visible;
+    border: none;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+    max-width: 1100px; 
+    margin: 0 auto; 
+    padding: 0.5rem; 
+}
+
+/* Especificidad 0-1-2 */
+article.has-svg svg {
+    width: auto;          
+    max-width: 95vw;       
+    height: auto !important;
+    display: block;
+}
+
+/* Especificidad 0-0-2 */
+body > main > div {
+    height: 600px; 
+    width: 100%;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+
 /* Se esta redefiniendo :
     header{
         display: flex;
@@ -29,13 +75,19 @@ nav {
 
     nav {
         display: flex; 
+    }
+
+    body > main > div { height: 600px; }
+
   Se esta cambiando:
-    - El header para que se distribuyan los elementos verticalmente.
-    - El nav para que los elementos se distribuyan verticalmente.
-    - No se están mostrando las breadcumbs.
-    - Los videos y audios se adaptan al ancho de la pantalla.
+    1 - El header para que se distribuyan los elementos verticalmente.
+    2 - El nav para que los elementos se distribuyan verticalmente.
+    3 - No se están mostrando las breadcumbs.
+    4 - Los videos y audios se adaptan al ancho de la pantalla.
+    5 - La altura del div del mapa para ocupar más espacio en móvil.
 */
 @media (min-width: 320px) and (max-width: 799px) {
+
     header{
         display: flex;
         flex-direction: column;
@@ -62,21 +114,7 @@ nav {
         width: 100%;
         height: auto;
     }
-
-    /* Selector para garantizar que la imagen (<img> dentro de <article>) ocupe todo el ancho disponible */
-    /* Usamos 'article img' para seleccionar la imagen directamente */
-    /* Especificidad 0-0-2 */
-    article img {
-        width: 100%;
-        height: auto; /* Mantiene la proporción */
-        max-width: 100%;
-        display: block;
-        margin: 0 auto;
-        /* Estilos de presentación móvil */
-        border-radius: 8px; 
-        object-fit: contain; 
-    }
-
+   
     /* Estilo para el contenedor del artículo en móvil */
     /* Usamos 'article' para seleccionar el contenedor */
     /* Especificidad 0-0-1 */
@@ -88,6 +126,20 @@ nav {
         /* Opcional: aseguramos que ocupe todo el ancho disponible si está dentro de un contenedor principal */
         width: 95%; 
     }
+
+     /* Selector para garantizar que la imagen (<img> dentro de <article>) ocupe todo el ancho disponible */
+    /* Usamos 'article img' para seleccionar la imagen directamente */
+    /* Especificidad 0-0-2 */
+    article img {
+        width: 100%;
+        height: auto; /* Mantiene la proporción */
+        max-width: 100%;
+        display: block;
+        margin: 0 auto;
+        /* Estilos de presentación móvil */
+        border-radius: 8px; 
+        object-fit: contain; 
+    }   
 
     /* Selector para garantizar que la imagen (<img> dentro de <article>) ocupe todo el ancho disponible */
     /* Usamos 'section img' para seleccionar la imagen directamente */
@@ -114,4 +166,13 @@ nav {
         /* Opcional: aseguramos que ocupe todo el ancho disponible si está dentro de un contenedor principal */
         width: 95%; 
     }
+
+    /* Especificidad 0-0-2 */
+    body > main > div {
+        height: 70vh; /* Altura relativa para dispositivos móviles */
+        width: 100%; 
+        margin-left: 0;
+        margin-right: 0;
+    }
+   
 }
