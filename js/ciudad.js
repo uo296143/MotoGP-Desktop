@@ -234,9 +234,6 @@ class Ciudad {
     $('main').append($section.append($tabla));
   }
 
-  /**
-   * Tarea 8: Añade la información procesada (medias) de entrenamientos al documento (DOM).
-   */
   _añadirInfoEntrenos() {
     const $article = $('<article>');
     $article.append($('<h2>').text('📈 Medias Meteorológicas de Entrenamientos (3 Días)'));

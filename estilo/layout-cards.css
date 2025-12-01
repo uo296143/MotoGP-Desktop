@@ -3,13 +3,12 @@
 /* Contenedor del tablero: el <main> que contiene el título y los 12 <article> */
 /* Especificidad 0-0-1 */
 main {
-  display: grid;                                  /* Activa CSS Grid */
-  grid-template-columns: repeat(4, minmax(180px, 1fr));
-                                                  /* 4 columnas iguales (mín 180px, si hay sitio se reparten) */
-  grid-auto-rows: 20em;                           /* Altura de cada fila = altura de una carta (coincide con tu 20em) */
-  gap: 1rem;                                      /* Separación entre celdas */
-  align-content: start;                           /* ‘pega’ la rejilla a la parte superior si sobra altura */
-  justify-items: stretch;                         /* Cada celda ocupa todo el ancho disponible */
+  display: grid;                                  
+  grid-template-columns: repeat(4, minmax(180px, 1fr));                                       
+  grid-auto-rows: 20em;                           
+  gap: 1rem;                                     
+  align-content: start;                           
+  justify-items: stretch;                        
 }
 
 /* El primer hijo del main (el título del juego) ocupa la fila completa */
@@ -52,9 +51,8 @@ main > p:first-of-type {
 */
 @media (max-width: 768px) {
   main {
-    grid-template-columns: repeat(2, minmax(140px, 1fr));
-                                                  /* Dos columnas en pantallas estrechas */
-    grid-auto-rows: 18em;                         /* Ajusta la altura de la carta en móvil (opcional) */
-    gap: 0.875rem;                                /* Un poco menos de separación (opcional) */
+    grid-template-columns: repeat(2, minmax(140px, 1fr));                                                
+    grid-auto-rows: 18em;                         
+    gap: 0.875rem;                               
   }
 }

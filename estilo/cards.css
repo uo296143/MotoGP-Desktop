@@ -21,6 +21,7 @@ main article[data-estado=volteada], main article[data-estado=revelada] {
 }
 
 /* Reglas con los estilos generales para el encabezado y la imagen de la carta */
+/* SE ESTÁ ESTABLECIENDO UN COLOR DE FONDO PERO NO UNO DE PRIMER PLANO */
 /* especificidad: 002 */
 /* especificidad: 002 */
 article h3,

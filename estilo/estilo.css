@@ -13,7 +13,8 @@ body{
 }
 
 /* Especificidad 0-0-1 */
-/* Color de fondo heredado de body: #F2F1E8 */
+/* SE ESTÁ DEFINIENDO UN COLOR DE PRIMER PLANO
+/* EL COLOR DE FONDO SE ESTÁ HEREDANDO DE BODY */
 h1{
     color: #1C1C1C;
 }
@@ -35,7 +36,8 @@ header > h1 > a{
 }
 
 /* Especificidad 0-1-0 */
-/* Color de fondo heredado de body: #F2F1E8 */
+/* SE ESTÁ DEFINIENDO UN COLOR DE PRIMER PLANO
+/* EL COLOR DE FONDO SE ESTÁ HEREDANDO DE BODY */
 /* Estilos para el enlace activo (html actual) en el menú de navegación */
 .active{
     color:#0E457C;
@@ -48,14 +50,16 @@ p:first-of-type{
 }
 
 /* Especificidad 0-0-1 */
-/* Color de fondo heredado de body: #F2F1E8 */
+/* SE ESTÁ DEFINIENDO UN COLOR DE PRIMER PLANO
+/* EL COLOR DE FONDO SE ESTÁ HEREDANDO DE BODY */
 a{
     text-decoration-line: none;
     color: #000000;
 }
 
 /* Especificidad 0-1-1 */
-/* Color de fondo heredado de body: #F2F1E8 */
+/* SE ESTÁ DEFINIENDO UN COLOR DE PRIMER PLANO
+/* EL COLOR DE FONDO SE ESTÁ HEREDANDO DE BODY */
 a:hover{
     color:#771313;
 }

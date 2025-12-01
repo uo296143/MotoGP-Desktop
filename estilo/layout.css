@@ -67,24 +67,29 @@ body > main > div {
 
 
 /* Se esta redefiniendo :
+    1 - 
     header{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
 
+    2 -
     nav {
         display: flex; 
     }
 
-    body > main > div { height: 600px; }
+    3 -
+    body > main > div {
+        height: 70vh;
+        width: 100%;
+    }
 
   Se esta cambiando:
     1 - El header para que se distribuyan los elementos verticalmente.
     2 - El nav para que los elementos se distribuyan verticalmente.
-    3 - No se están mostrando las breadcumbs.
-    4 - Los videos y audios se adaptan al ancho de la pantalla.
-    5 - La altura del div del mapa para ocupar más espacio en móvil.
+    3 - 
+   
 */
 @media (min-width: 320px) and (max-width: 799px) {
 
@@ -169,7 +174,7 @@ body > main > div {
 
     /* Especificidad 0-0-2 */
     body > main > div {
-        height: 70vh; /* Altura relativa para dispositivos móviles */
+        height: 70vh; 
         width: 100%; 
         margin-left: 0;
         margin-right: 0;
