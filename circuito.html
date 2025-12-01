@@ -34,7 +34,7 @@
     <h2>Circuitos de MotoGP-Desktop</h2>
     <main>
         <label>Selecciona el archivo infoCircuito.html:</label>
-        <input type="file" accept=".html,text/html" />
+        <input type="file" accept=".html,text/html" title="Selector de Archivo HTML" />
         <article>
             <h2>Altimetría del circuito</h2>
         </article>
@@ -42,7 +42,7 @@
         <input type="file" accept="image/svg+xml" title="Selector de Archivo SVG" />
         <h2>Localización del circuito</h2>
         <label>Selecciona el archivo circuito.kml:</label>
-        <input type="file" accept=".kml" onchange="cargadorKML.leerArchivoKML(this.files);">
+        <input type="file" accept=".kml" title="Selector de Archivo KML" />
         <div>
             
         </div>
@@ -50,10 +50,10 @@
 
     </main>
             
-    <script>
+    <!-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             const circuito = new Circuito();
         });
-    </script>
+    </script> -->
 </body>
 </html>

@@ -1,6 +1,7 @@
 /* ====== layout-cards.css — SOLO reglas de layout (GRID) ====== */
 
 /* Contenedor del tablero: el <main> que contiene el título y los 12 <article> */
+/* REDEFINICIÓN DE GAP QUE INVLUYE COLUMN-GAP Y ROW-GAP
 /* Especificidad 0-0-1 */
 main {
   display: grid;                                  
@@ -12,6 +13,7 @@ main {
 }
 
 /* El primer hijo del main (el título del juego) ocupa la fila completa */
+/* REDEFINICIÓN DE GRID-COLUMN QUE INVLUYE GRID-ROW-START Y GRID-ROW-END
 /* Especificidad 0-1-1 */
 main > :first-child {
   grid-column: 1 / -1;                            /* De la 1ª a la última columna */
@@ -36,6 +38,7 @@ main > article img {
   display: block;
 }
 
+/* REDEFINICIÓN DE GRID-COLUMN QUE INVLUYE GRID-ROW-START Y GRID-ROW-END
 /* Especificidad 0-1-2 */
 main > p:first-of-type {
   grid-column: 1 / -1;

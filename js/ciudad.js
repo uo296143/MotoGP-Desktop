@@ -239,20 +239,47 @@ class Ciudad {
     $article.append($('<h2>').text('📈 Medias Meteorológicas de Entrenamientos (3 Días)'));
 
     this.mediasEntrenos.forEach(dia => {
+      // Título para el día
       $article.append($('<h3>').text(`Día: ${dia.fecha}`));
 
-      const $dl = $('<dl>');
+      // Crear una tabla para los datos meteorológicos de este día
+      const $table = $('<table>');
+      const $tbody = $('<tbody>');
 
-      $dl.append($('<dt>').text('Temperatura media a 2m del suelo:'))
-        .append($('<dd>').text(`${dia.datos.temperature_2m} ºC`));
-      $dl.append($('<dt>').text('Lluvia media:'))
-        .append($('<dd>').text(`${dia.datos.rain} mm`));
-      $dl.append($('<dt>').text('Velocidad media del viento a 10 del suelo:'))
-        .append($('<dd>').text(`${dia.datos.wind_speed_10m} km/h`));
-      $dl.append($('<dt>').text('Humedad relativa media a 2m del suelo:'))
-        .append($('<dd>').text(`${dia.datos.relative_humidity_2m} %`));
+      // Función auxiliar para crear una fila de tabla (<tr>)
+      const crearFila = (descripcion, valor, unidad) => {
+        return $('<tr>')
+          .append($('<th>').text(descripcion)) // Encabezado de fila (descripción)
+          .append($('<td>').text(`${valor} ${unidad}`)); // Celda de datos (valor + unidad)
+      };
 
-      $article.append($dl);
+      // Agregar filas a la tabla
+      $tbody.append(crearFila(
+        'Temperatura media a 2m del suelo',
+        dia.datos.temperature_2m,
+        'ºC'
+      ));
+
+      $tbody.append(crearFila(
+        'Lluvia media',
+        dia.datos.rain,
+        'mm'
+      ));
+
+      $tbody.append(crearFila(
+        'Velocidad media del viento a 10m del suelo',
+        dia.datos.wind_speed_10m,
+        'km/h'
+      ));
+
+      $tbody.append(crearFila(
+        'Humedad relativa media a 2m del suelo',
+        dia.datos.relative_humidity_2m,
+        '%'
+      ));
+
+      $table.append($tbody);
+      $article.append($table);
     });
 
     $('main').append($article);

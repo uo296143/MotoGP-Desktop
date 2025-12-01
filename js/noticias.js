@@ -30,6 +30,7 @@ class Noticias {
             const title = articulo.title;
             const article_url = articulo.url;
             const entradilla = articulo.snippet;
+            const source_domain = articulo.source || 'Fuente desconocida';
 
             console.log(`Procesando Artículo ${index + 1}: ${title}`);
 
@@ -57,10 +58,14 @@ class Noticias {
                     )
             );
 
+            $section.append(
+                $('<p>').html(
+                    `Fuente: <strong>${source_domain}</strong>`
+                )
+            );
+
             $section.append($('<p>').text(entradilla));
 
-            // --- 4. ENLACE FINAL (Si lo quieres como un botón o 'Leer más') ---
-            // Si quieres un enlace explícito 'Leer más', lo añades al final:
             $section.append(
                 $('<p>').append(
                     $('<a>')

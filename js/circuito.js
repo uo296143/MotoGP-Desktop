@@ -1,22 +1,72 @@
+/**
+ * Clase base que encapsula la lógica genérica de lectura de archivos
+ * usando FileReader y devolviendo una Promesa.
+ */
+class LectorArchivosBase {
+    /**
+     * Lee un archivo como texto y devuelve una promesa.
+     * @param {File} archivo - El objeto File a leer.
+     * @returns {Promise<string>} Promesa que resuelve con el contenido del archivo como texto.
+     */
+    static leerComoTexto(archivo) {
+        return new Promise((resolve, reject) => {
+            if (!archivo) {
+                return reject(new Error("Archivo no proporcionado."));
+            }
+            const lector = new FileReader();
+            lector.onload = (evento) => resolve(evento.target.result);
+            lector.onerror = (error) => reject(new Error("Error de lectura: " + error.target.error.name));
+            lector.readAsText(archivo);
+        });
+    }
+
+    /**
+     * Configura el event listener 'change' en un input dado.
+     * @param {string} selector - El selector CSS para el input.
+     * @param {function(File): void} handler - La función a ejecutar con el File seleccionado.
+     */
+    static configurarInput(selector, handler) {
+        const inputElement = document.querySelector(selector);
+        if (inputElement) {
+            inputElement.addEventListener('change', (event) => {
+                const archivo = event.target.files[0];
+                if (archivo) {
+                    handler(archivo);
+                }
+            });
+        } else {
+            console.error(`Error: No se encontró el input con selector '${selector}'.`);
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------------------
+// CLASE CIRCUITO: Carga y Procesamiento del HTML
+// ---------------------------------------------------------------------------------------
 
 class Circuito {
+    /** @type {HTMLElement} */
+    #outputElement;
+    /** @type {HTMLElement} */
+    #fileInput;
 
     constructor() {
-        this.comprobarApiFile()
-        this.outputElement = document.querySelector('main');
-        this.fileInput = document.querySelector('input');
-        // Comprueba si los elementos necesarios existen
-        if (this.fileInput && this.outputElement) {
-            this.configurarLectorArchivo();
+        this.#comprobarApiFile();
+        this.#outputElement = document.querySelector('main');
+        // Usa el selector basado en el title del input HTML
+        this.#fileInput = document.querySelector('input[title="Selector de Archivo HTML"]');
+
+        if (this.#fileInput && this.#outputElement) {
+            this.#configurarLectorArchivo();
         } else {
-            console.error("No se pudo encontrar el <input type='file'> o el elemento de salida <main>.");
+            console.error("Error en Circuito: No se pudo encontrar el input HTML o el elemento <main>.");
         }
     }
 
     /**
      * Comprueba si el navegador soporta el uso de la API File.
      */
-    comprobarApiFile() {
+    #comprobarApiFile() {
         if (!(window.File && window.FileReader && window.FileList && window.Blob)) {
             const p = document.createElement('p');
             p.textContent = '¡¡¡ Este navegador NO soporta el API File !!!';
@@ -27,160 +77,143 @@ class Circuito {
     /**
      * Configura el evento 'change' en el input para iniciar la lectura.
      */
-    configurarLectorArchivo() {
-        this.fileInput.addEventListener('change', (event) => {
+    #configurarLectorArchivo() {
+        this.#fileInput.addEventListener('change', (event) => {
             const archivo = event.target.files[0];
             if (archivo) {
-                this.leerArchivoHTML(archivo);
+                this.#leerArchivoHTML(archivo);
             }
         });
     }
 
-    leerArchivoHTML(archivo) {
-        const lector = new FileReader();
-        lector.onload = (evento) => {
-            const contenidoHTML = evento.target.result;
-            this.procesarContenidoHTML(contenidoHTML);
-        }
-
-        // Se inicia la lectura del archivo como texto
-        lector.readAsText(archivo);
-
-        // Manejo de errores
-        lector.onerror = () => {
-            this.outputElement.innerHTML = "<p> ❌ Error al leer el archivo.</p>";
-        };
-    }
-
     /**
-     * Limpia todo el contenido dentro de <main> que viene después del <input type="file">.
+     * Lee y procesa el archivo HTML usando la clase base.
+     * @param {File} archivo 
      */
-    limpiarOutput() {
-        if (!this.outputElement) return;
-
-        // Buscamos el input para saber desde dónde empezar a limpiar.
-        const inputElement = this.outputElement.querySelector('input[type="file"]');
-
-        // Creamos un array de elementos a mantener (label, input, p con soporte API)
-        const elementosBase = Array.from(this.outputElement.children).filter(child => {
-            return child.tagName !== 'P' || !child.textContent.includes('API File');
-        });
-
-        // Mantenemos solo el label y el input.
-        // Si quieres limpiar TODO lo que venga después del input, tu lógica es casi correcta,
-        // pero hay que considerar el elemento <p> del 'comprobarApiFile'.
-        // Para ser más seguros y simple, solo eliminamos los elementos <section> y mensajes de éxito/error.
-
-        let currentElement = inputElement ? inputElement.nextElementSibling : this.outputElement.firstElementChild;
-
-        while (currentElement) {
-            const next = currentElement.nextElementSibling;
-
-            // Eliminamos mensajes de éxito/error (<p>) y la sección de contenido
-            if (currentElement.tagName === 'P' || currentElement.tagName === 'SECTION') {
-                currentElement.remove();
-            }
-            currentElement = next;
-        }
+    #leerArchivoHTML(archivo) {
+        LectorArchivosBase.leerComoTexto(archivo)
+            .then(contenidoHTML => {
+                this.#procesarContenidoHTML(contenidoHTML);
+            })
+            .catch(error => {
+                this.#outputElement.innerHTML = `<p style="color: red;"> ❌ ${error.message || 'Error al leer el archivo.'}</p>`;
+            });
     }
 
     /**
-     * TAREA 4: Analiza el contenido HTML y lo inyecta en el DOM de circuito.html.
+     * Limpia el contenido dentro de <main> que viene después del <input type="file">.
+     */
+    #limpiarOutput() {
+        if (!this.#outputElement) return;
+
+        // Limpieza más simple: eliminar todos los elementos que NO son inputs, labels, o el <article> principal
+        // Mantiene solo los selectores de archivo al inicio.
+        let isAfterInitialInput = false;
+
+        // Elementos a mantener al inicio del main
+        const elementsToKeep = [
+            this.#fileInput,
+            this.#fileInput.previousElementSibling, // Label del input HTML
+            document.querySelector('input[title="Selector de Archivo SVG"]').previousElementSibling, // Label SVG
+            document.querySelector('input[title="Selector de Archivo SVG"]'), // Input SVG
+            document.querySelector('input[title="Selector de Archivo KML"]').previousElementSibling, // Label KML
+            document.querySelector('input[title="Selector de Archivo KML"]'), // Input KML
+            document.querySelector('article') // Article para altimetría
+        ];
+
+        Array.from(this.#outputElement.children).forEach(child => {
+            // Si el elemento no es uno de los elementos "base" que deben quedarse, lo elimina.
+            if (!elementsToKeep.includes(child) && !child.textContent.includes('API File')) {
+                child.remove();
+            }
+        });
+
+        // El código de limpieza original era complejo, lo simplificamos a una lógica de exclusión.
+    }
+
+    /**
+     * Analiza el contenido HTML y lo inyecta en el DOM.
      * @param {string} contenido - El contenido HTML cargado del archivo.
      */
-    procesarContenidoHTML(contenido) {
-        if (!this.outputElement) return;
+    #procesarContenidoHTML(contenido) {
+        if (!this.#outputElement) return;
 
-        this.limpiarOutput();
+        this.#limpiarOutput();
 
-        // 1. Analizar el contenido HTML para obtener un objeto Document
         const parser = new DOMParser();
         const doc = parser.parseFromString(contenido, "text/html");
 
-        // 2. Localizar la <section> de información dentro del archivo cargado
+        // Asumiendo que quieres el contenido dentro de <section> del archivo cargado
         const circuitoSection = doc.querySelector('section');
 
         if (circuitoSection) {
-            // 3. Crear un nuevo contenedor <section> para mantener la estructura
+            // Creación de un fragmento para evitar manipulación directa del DOM en el bucle
             const newContentContainer = document.createElement('section');
 
-            // 4. Mover todos los hijos del circuitoSection al nuevo contenedor 
-            // Esto es eficiente y evita el riesgo de XSS asociado a innerHTML = body.innerHTML
+            // Mover todos los hijos del circuitoSection al nuevo contenedor
             while (circuitoSection.firstChild) {
                 newContentContainer.appendChild(circuitoSection.firstChild);
             }
-
-            // 6. Agregar el contenedor con todo el contenido del circuito al <main> de circuito.html
-            this.outputElement.appendChild(newContentContainer);
+            this.#outputElement.appendChild(newContentContainer);
         } else {
             const errorMsg = document.createElement('p');
             errorMsg.style.color = 'orange';
-            errorMsg.innerHTML = '⚠️ No se encontró la etiqueta &lt;section&gt; en el archivo cargado para inyectar el contenido.';
-            this.outputElement.appendChild(errorMsg);
+            errorMsg.textContent = '⚠️ No se encontró la etiqueta <section> en el archivo cargado para inyectar el contenido.';
+            this.#outputElement.appendChild(errorMsg);
         }
-
-        console.log("Tarea 4 completada: Contenido del circuito inyectado en el DOM.");
     }
-
 }
 
-class CargadorSVG {
+// ---------------------------------------------------------------------------------------
+// CLASE CARGADORSVG: Carga y Procesamiento del SVG
+// ---------------------------------------------------------------------------------------
 
-    // Propiedad para almacenar una referencia al elemento <article> de salida
-    outputElement;
+class CargadorSVG {
+    /** @type {HTMLElement} */
+    #outputElement;
 
     constructor() {
-        // Buscamos el primer (y único) elemento <article> como contenedor de salida
-        this.outputElement = document.querySelector('article');
-        if (!this.outputElement) {
-            console.error("Error: Elemento <article> no encontrado.");
+        this.#outputElement = document.querySelector('article');
+        if (this.#outputElement) {
+            // Usa la clase base para configurar el listener de forma genérica
+            LectorArchivosBase.configurarInput(
+                'input[title="Selector de Archivo SVG"]',
+                (archivo) => this.#leerArchivoSVG(archivo)
+            );
+        } else {
+            console.error("Error en CargadorSVG: Elemento <article> no encontrado.");
         }
     }
 
     /**
      * Muestra el contenido SVG en el elemento <article>.
      * @param {string} contenidoSVG - La cadena de texto que contiene el código SVG.
-     * (Tarea 3)
      */
-    insertarSVG(contenidoSVG) {
-        if (this.outputElement) {
-            // Inyecta el código SVG directamente en el DOM
-            // Limpia marca previa
-            this.outputElement.classList.remove('has-svg');
+    #insertarSVG(contenidoSVG) {
+        if (!this.#outputElement) return;
 
-            // Inyectamos el SVG
-            this.outputElement.innerHTML = contenidoSVG;
+        this.#outputElement.innerHTML = contenidoSVG;
+        this.#outputElement.style.display = 'block';
 
-            // Asegurar que el contenedor se muestra como bloque (no centrar)
-            this.outputElement.style.display = 'block';
+        const svgEl = this.#outputElement.querySelector('svg');
+        if (svgEl) {
+            // Optimización de SVG
+            svgEl.removeAttribute('width');
+            svgEl.removeAttribute('height');
+            svgEl.style.width = '100%';
+            svgEl.style.height = 'auto';
+            svgEl.style.display = 'block';
 
-            // Normalizar el SVG insertado para evitar recortes y forzar comportamiento responsivo
-            const svgEl = this.outputElement.querySelector('svg');
-            if (svgEl) {
-                // remover atributos width/height si existen para que CSS gestione el escalado
-                svgEl.removeAttribute('width');
-                svgEl.removeAttribute('height');
-                svgEl.style.width = '100%';
-                svgEl.style.height = 'auto';
-                svgEl.style.display = 'block';
-
-                // Si el SVG no tiene viewBox intentamos añadir uno (usa getBBox si es posible)
-                if (!svgEl.hasAttribute('viewBox')) {
-                    try {
-                        // getBBox puede lanzar si el SVG no está en el DOM todavía; lo encapsulamos
-                        const bbox = svgEl.getBBox();
-                        // Evitar valores 0,0 si falla
-                        const w = bbox.width || 1100;
-                        const h = bbox.height || 480;
-                        svgEl.setAttribute('viewBox', `0 0 ${w} ${h}`);
-                    } catch (e) {
-                        // Valor por defecto razonable para las altimetrías comunes en este proyecto
-                        svgEl.setAttribute('viewBox', '0 0 1100 480');
-                    }
+            // Normalización de viewBox
+            if (!svgEl.hasAttribute('viewBox')) {
+                try {
+                    const bbox = svgEl.getBBox();
+                    const w = bbox.width || 1100;
+                    const h = bbox.height || 480;
+                    svgEl.setAttribute('viewBox', `0 0 ${w} ${h}`);
+                } catch (e) {
+                    svgEl.setAttribute('viewBox', '0 0 1100 480');
                 }
-
-                // Añadir clase al contenedor para que CSS cambie la presentación y deje crecer el artículo
-                this.outputElement.classList.add('has-svg');
             }
         }
     }
@@ -188,102 +221,102 @@ class CargadorSVG {
     /**
      * Carga un archivo SVG desde la máquina cliente usando API File.
      * @param {File} file - El objeto File seleccionado.
-     * (Tarea 1 y Tarea 2)
      */
-    leerArchivoSVG(file) {
-        const lector = new FileReader();
-        const self = this; // Referencia a la instancia de la clase
-
-        // Validación simple de tipo
+    #leerArchivoSVG(file) {
         const tipoSVG = /image\/svg\+xml/;
         if (!file.type.match(tipoSVG)) {
-            if (self.outputElement) {
-                self.outputElement.innerHTML = `<p style="color: red;">Error: ¡Archivo no válido! Selecciona un SVG.</p>`;
-            }
+            this.#outputElement.innerHTML = `<p style="color: red;">Error: ¡Archivo no válido! Selecciona un SVG.</p>`;
             return;
         }
 
-        // Callback cuando la lectura del archivo finaliza
-        lector.onload = function (evento) {
-            const contenidoSVG = lector.result;
-            // Llama al método de inserción con el contenido leído
-            self.insertarSVG(contenidoSVG);
-        };
-
-        // Callback si ocurre un error de lectura
-        lector.onerror = function () {
-            if (self.outputElement) {
-                self.outputElement.innerHTML = `<p style="color: red;">Error: Falló la lectura del archivo.</p>`;
-            }
-        };
-
-        // Inicia la lectura del archivo como texto plano
-        lector.readAsText(file);
-    }
-
-    /**
-     * Inicializa la escucha de eventos en el input file.
-     * No usamos ID ni Class, sino el selector de tipo de input.
-     */
-    configurarInput() {
-        const inputElement = document.querySelector('input[title="Selector de Archivo SVG"]');
-
-        if (inputElement) {
-            // Adjuntar el listener de cambio
-            inputElement.addEventListener('change', (event) => {
-                // Pasamos el primer archivo de la lista al método leerArchivoSVG
-                if (event.target.files.length > 0) {
-                    this.leerArchivoSVG(event.target.files[0]);
-                }
+        LectorArchivosBase.leerComoTexto(file)
+            .then(contenidoSVG => {
+                this.#insertarSVG(contenidoSVG);
+            })
+            .catch(error => {
+                this.#outputElement.innerHTML = `<p style="color: red;">Error: Falló la lectura del archivo. ${error.message}</p>`;
             });
-        } else {
-            console.error("No se encontró el input 'file' para configurar el cargador.");
-        }
     }
 }
 
-/**
- * Clase para cargar, procesar un archivo KML y representar su contenido en un mapa dinámico.
- *
- * NOTA: Esta clase asume que la biblioteca de Google Maps API ya está cargada
- * a través de la etiqueta <script> en circuito.html, y utiliza la función
- * global initMapKML como callback inicial.
- */
+// ---------------------------------------------------------------------------------------
+// CLASE CARGADORKML: Carga y Procesamiento del KML
+// ---------------------------------------------------------------------------------------
+
 class CargadorKML {
     #mapa;
 
     constructor() {
         this.#mapa = null;
+        this.#configurarInputKML();
     }
 
     /**
-     * @private
-     * Inicializa el mapa dinámico de Google Maps en el div anónimo.
-     * Este método se llama como callback inicial de la API de Google Maps.
+     * Configura la escucha de eventos en el input KML.
      */
-    #initMap() {
-        const centroInicial = { lat: 40.416775, lng: -3.703790 }; // Centro de España (por defecto)
-        const opciones = {
-            zoom: 5,
-            center: centroInicial,
-            mapTypeId: 'roadmap'
-        };
+    #configurarInputKML() {
+        // Usa la clase base para configurar el listener de forma genérica
+        LectorArchivosBase.configurarInput(
+            'input[title="Selector de Archivo KML"]',
+            (archivo) => this.#leerArchivoKML(archivo)
+        );
+    }
 
-        // Usamos document.querySelector('body > main > div') para seleccionar el div del mapa
-        const elementoMapa = document.querySelector('body > main > div');
-        if (elementoMapa) {
-            this.#mapa = new google.maps.Map(elementoMapa, opciones);
+    // ... (El resto de los métodos se mantiene igual, pero renombramos initMap a #initMap, drawCircuit a #drawCircuit, etc.) ...
+    // ... (Mantén los métodos #initMap, #parseCoordinates, #drawCircuit como privados) ...
+    // ... (Mantén initMapKML como público) ...
+
+    /**
+     * Tarea 4: Lectura del archivo circuito.kml usando la clase base.
+     * @param {File} archivo - El objeto File seleccionado.
+     */
+    #leerArchivoKML(archivo) {
+        LectorArchivosBase.leerComoTexto(archivo)
+            .then(contenidoKML => {
+                this.#insertarCapaKML(contenidoKML);
+            })
+            .catch(error => {
+                alert(`Error: Falló la lectura del archivo KML. ${error.message}`);
+            });
+    }
+
+    /**
+    * Tarea 5: Representar el circuito en un mapa dinámico.
+    * Superpone un archivo KML en el mapa: extrae coordenadas y dibuja el circuito.
+    * @param {string} contenidoKML - La cadena de texto que contiene el código KML.
+    */
+    #insertarCapaKML(contenidoKML) {
+        if (!this.#mapa) {
+            alert("Error: El mapa dinámico no se ha inicializado. Espera la carga de Google Maps.");
+            return;
+        }
+
+        const parser = new DOMParser();
+        const kmlDoc = parser.parseFromString(contenidoKML, "text/xml");
+
+        // Extraer Coordenadas de la Polilínea (LineString) del circuito.
+        let pathCoordinates = [];
+        // Se asume que el circuito está definido en un <coordinates> dentro de <LineString>
+        const lineStringElement = kmlDoc.querySelector('LineString coordinates');
+
+        if (lineStringElement) {
+            pathCoordinates = this.#parseCoordinates(lineStringElement.textContent);
+            if (pathCoordinates.length > 1) {
+                this.#drawCircuit(pathCoordinates);
+            } else {
+                console.warn("Advertencia: Se encontró LineString pero no suficientes coordenadas válidas.");
+            }
         } else {
-            console.error("Error: No se encontró el elemento div para el mapa.");
+            console.error("Error: No se encontró la estructura LineString coordinates en el KML.");
         }
     }
 
     /**
-     * @private
-     * Parsea la cadena de coordenadas del KML (ej: "-5.84,43.36,0 -5.85,43.37,0").
-     * @param {string} coordsString - Cadena de coordenadas (Lng,Lat,Alt).
-     * @returns {Array<Object>} Array de objetos de coordenadas { lat: number, lng: number }.
-     */
+ * @private
+ * Parsea la cadena de coordenadas del KML (ej: "-5.84,43.36,0 -5.85,43.37,0").
+ * @param {string} coordsString - Cadena de coordenadas (Lng,Lat,Alt).
+ * @returns {Array<Object>} Array de objetos de coordenadas { lat: number, lng: number }.
+ */
     #parseCoordinates(coordsString) {
         // Limpiar espacios, saltos de línea y separar por grupos de coordenadas
         const groups = coordsString.trim().split(/\s+/);
@@ -335,78 +368,48 @@ class CargadorKML {
         this.#mapa.fitBounds(bounds);
     }
 
-    /**
-     * Tarea 4: Lectura del archivo circuito.kml.
-     * Carga un archivo KML desde la máquina cliente usando API File.
-     * @param {FileList} files - La lista de archivos seleccionados (del input file).
-     */
-    leerArchivoKML(files) {
-        const archivo = files[0];
-
-        const lector = new FileReader();
-
-        lector.onload = (evento) => {
-            const contenidoKML = lector.result;
-            this.insertarCapaKML(contenidoKML); // Llama al método de la Tarea 5
-        };
-
-        lector.onerror = () => {
-            alert("Error: Falló la lectura del archivo.");
-        };
-
-        lector.readAsText(archivo);
-    }
-
-    /**
-     * Tarea 5: Representar el circuito en un mapa dinámico.
-     * Superpone un archivo KML en el mapa: extrae coordenadas y dibuja el circuito.
-     * @param {string} contenidoKML - La cadena de texto que contiene el código KML.
-     */
-    insertarCapaKML(contenidoKML) {
-        if (!this.#mapa) {
-            alert("Error: El mapa dinámico no se ha inicializado. Espera la carga de Google Maps.");
-            return;
-        }
-
-        const parser = new DOMParser();
-        const kmlDoc = parser.parseFromString(contenidoKML, "text/xml");
-
-        // Extraer Coordenadas de la Polilínea (LineString) del circuito.
-        let pathCoordinates = [];
-        // Se asume que el circuito está definido en un <coordinates> dentro de <LineString>
-        const lineStringElement = kmlDoc.querySelector('LineString coordinates');
-
-        if (lineStringElement) {
-            pathCoordinates = this.#parseCoordinates(lineStringElement.textContent);
-            if (pathCoordinates.length > 1) {
-                this.#drawCircuit(pathCoordinates);
-            } else {
-                console.warn("Advertencia: Se encontró LineString pero no suficientes coordenadas válidas.");
-            }
-        } else {
-            console.error("Error: No se encontró la estructura LineString coordinates en el KML.");
-        }
-    }
-
-    /**
-     * Método público para acceder a la inicialización del mapa desde el HTML (callback).
-     */
+    // Mantenemos este método público para el callback de Google Maps
     initMapKML() {
         this.#initMap();
     }
+
+    /**
+     * @private
+     * Inicializa el mapa dinámico de Google Maps en el div anónimo.
+     * Este método se llama como callback inicial de la API de Google Maps.
+     */
+    #initMap() {
+        const centroInicial = { lat: 40.416775, lng: -3.703790 }; // Centro de España (por defecto)
+        const opciones = {
+            zoom: 5,
+            center: centroInicial,
+            mapTypeId: 'roadmap'
+        };
+
+        // Usamos document.querySelector('body > main > div') para seleccionar el div del mapa
+        const elementoMapa = document.querySelector('body > main > div');
+        if (elementoMapa) {
+            this.#mapa = new google.maps.Map(elementoMapa, opciones);
+        } else {
+            console.error("Error: No se encontró el elemento div para el mapa.");
+        }
+    }
+
 }
 
-// 1. Instanciar la clase CargadorKML de forma global para que sea accesible desde el input (onchange)
-// y para que su método initMapKML pueda ser usado como callback.
-const cargadorKML = new CargadorKML();
 
-// 2. Definir la función global que Google Maps llama al cargarse.
-// Esto permite que el HTML use un callback simple sin hacer la instancia global manualmente.
+// ---------------------------------------------------------------------------------------
+// INICIALIZACIÓN
+// ---------------------------------------------------------------------------------------
+
+
+// 2. Definir la función global que Google Maps llama al cargarse (callback).
 window.initMapKML = function () {
     cargadorKML.initMapKML();
 };
 
+
+
+const circuito = new Circuito();
+const cargadorKML = new CargadorKML();
 const svgCargador = new CargadorSVG();
-svgCargador.configurarInput();
-
-
