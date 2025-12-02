@@ -96,39 +96,8 @@ class Circuito {
                 this.#procesarContenidoHTML(contenidoHTML);
             })
             .catch(error => {
-                this.#outputElement.innerHTML = `<p style="color: red;"> ❌ ${error.message || 'Error al leer el archivo.'}</p>`;
+                this.#outputElement.innerHTML = `<p> ❌ ${error.message || 'Error al leer el archivo.'}</p>`;
             });
-    }
-
-    /**
-     * Limpia el contenido dentro de <main> que viene después del <input type="file">.
-     */
-    #limpiarOutput() {
-        if (!this.#outputElement) return;
-
-        // Limpieza más simple: eliminar todos los elementos que NO son inputs, labels, o el <article> principal
-        // Mantiene solo los selectores de archivo al inicio.
-        let isAfterInitialInput = false;
-
-        // Elementos a mantener al inicio del main
-        const elementsToKeep = [
-            this.#fileInput,
-            this.#fileInput.previousElementSibling, // Label del input HTML
-            document.querySelector('input[title="Selector de Archivo SVG"]').previousElementSibling, // Label SVG
-            document.querySelector('input[title="Selector de Archivo SVG"]'), // Input SVG
-            document.querySelector('input[title="Selector de Archivo KML"]').previousElementSibling, // Label KML
-            document.querySelector('input[title="Selector de Archivo KML"]'), // Input KML
-            document.querySelector('article') // Article para altimetría
-        ];
-
-        Array.from(this.#outputElement.children).forEach(child => {
-            // Si el elemento no es uno de los elementos "base" que deben quedarse, lo elimina.
-            if (!elementsToKeep.includes(child) && !child.textContent.includes('API File')) {
-                child.remove();
-            }
-        });
-
-        // El código de limpieza original era complejo, lo simplificamos a una lógica de exclusión.
     }
 
     /**
@@ -138,12 +107,9 @@ class Circuito {
     #procesarContenidoHTML(contenido) {
         if (!this.#outputElement) return;
 
-        this.#limpiarOutput();
-
         const parser = new DOMParser();
         const doc = parser.parseFromString(contenido, "text/html");
 
-        // Asumiendo que quieres el contenido dentro de <section> del archivo cargado
         const circuitoSection = doc.querySelector('section');
 
         if (circuitoSection) {
@@ -157,7 +123,6 @@ class Circuito {
             this.#outputElement.appendChild(newContentContainer);
         } else {
             const errorMsg = document.createElement('p');
-            errorMsg.style.color = 'orange';
             errorMsg.textContent = '⚠️ No se encontró la etiqueta <section> en el archivo cargado para inyectar el contenido.';
             this.#outputElement.appendChild(errorMsg);
         }
@@ -186,23 +151,49 @@ class CargadorSVG {
     }
 
     /**
+     * @private
+     * Inserta un título h2 como primer hijo del div contenedor del mapa.
+     * @param {string} textoTitulo - El texto para el título.
+     */
+    #insertarTituloAltimetria(textoTitulo) {
+        const elementoMapa = document.querySelector('body > main > article');
+        if (!elementoMapa) {
+            console.error("Error: No se encontró el article para insertar el título.");
+            return;
+        }
+
+        // Verificar si el título ya existe para evitar duplicados
+        const tituloExistente = elementoMapa.querySelector('h2');
+        if (tituloExistente && tituloExistente.textContent === textoTitulo) {
+            return; // El título ya está, no hacemos nada
+        }
+
+        const titulo = document.createElement('h2');
+        titulo.textContent = textoTitulo;
+
+        // Usamos prepend() para asegurar que se inserte como el PRIMER hijo.
+        // Si ya había un título diferente, lo reemplaza o lo mantiene al inicio.
+        if (tituloExistente) {
+            tituloExistente.remove(); // Opcional: si quieres asegurar que solo haya UNO
+        }
+        elementoMapa.before(titulo);
+    }
+
+    /**
      * Muestra el contenido SVG en el elemento <article>.
      * @param {string} contenidoSVG - La cadena de texto que contiene el código SVG.
      */
     #insertarSVG(contenidoSVG) {
         if (!this.#outputElement) return;
 
+        this.#insertarTituloAltimetria("Altimetría del circuito");
         this.#outputElement.innerHTML = contenidoSVG;
-        this.#outputElement.style.display = 'block';
 
         const svgEl = this.#outputElement.querySelector('svg');
         if (svgEl) {
             // Optimización de SVG
             svgEl.removeAttribute('width');
             svgEl.removeAttribute('height');
-            svgEl.style.width = '100%';
-            svgEl.style.height = 'auto';
-            svgEl.style.display = 'block';
 
             // Normalización de viewBox
             if (!svgEl.hasAttribute('viewBox')) {
@@ -225,7 +216,7 @@ class CargadorSVG {
     #leerArchivoSVG(file) {
         const tipoSVG = /image\/svg\+xml/;
         if (!file.type.match(tipoSVG)) {
-            this.#outputElement.innerHTML = `<p style="color: red;">Error: ¡Archivo no válido! Selecciona un SVG.</p>`;
+            this.#outputElement.innerHTML = `<p>Error: ¡Archivo no válido! Selecciona un SVG.</p>`;
             return;
         }
 
@@ -234,7 +225,7 @@ class CargadorSVG {
                 this.#insertarSVG(contenidoSVG);
             })
             .catch(error => {
-                this.#outputElement.innerHTML = `<p style="color: red;">Error: Falló la lectura del archivo. ${error.message}</p>`;
+                this.#outputElement.innerHTML = `<p>Error: Falló la lectura del archivo. ${error.message}</p>`;
             });
     }
 }
@@ -281,6 +272,35 @@ class CargadorKML {
     }
 
     /**
+     * @private
+     * Inserta un título h2 como primer hijo del div contenedor del mapa.
+     * @param {string} textoTitulo - El texto para el título.
+     */
+    #insertarTituloMapa(textoTitulo) {
+        const elementoMapa = document.querySelector('body > main > div');
+        if (!elementoMapa) {
+            console.error("Error: No se encontró el div del mapa para insertar el título.");
+            return;
+        }
+
+        // Verificar si el título ya existe para evitar duplicados
+        const tituloExistente = elementoMapa.querySelector('h2');
+        if (tituloExistente && tituloExistente.textContent === textoTitulo) {
+            return; // El título ya está, no hacemos nada
+        }
+
+        const titulo = document.createElement('h2');
+        titulo.textContent = textoTitulo;
+
+        // Usamos prepend() para asegurar que se inserte como el PRIMER hijo.
+        // Si ya había un título diferente, lo reemplaza o lo mantiene al inicio.
+        if (tituloExistente) {
+            tituloExistente.remove(); // Opcional: si quieres asegurar que solo haya UNO
+        }
+        elementoMapa.before(titulo);
+    }
+
+    /**
     * Tarea 5: Representar el circuito en un mapa dinámico.
     * Superpone un archivo KML en el mapa: extrae coordenadas y dibuja el circuito.
     * @param {string} contenidoKML - La cadena de texto que contiene el código KML.
@@ -290,6 +310,8 @@ class CargadorKML {
             alert("Error: El mapa dinámico no se ha inicializado. Espera la carga de Google Maps.");
             return;
         }
+
+        this.#insertarTituloMapa("Localización del circuito");
 
         const parser = new DOMParser();
         const kmlDoc = parser.parseFromString(contenidoKML, "text/xml");
