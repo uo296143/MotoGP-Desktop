@@ -9,6 +9,7 @@ header{
 h1 {
   flex: 1;                      
   text-align: center;
+  color: #FFFFFF
 }
 
 /* Especificidad 0-0-1 */
@@ -102,7 +103,7 @@ main > article > p:nth-of-type(1) {
 
 /* Especificidad 0-1-1 */
 form[method="POST"] {
-    display: flex;
+    /*display: flex;*/
     margin-bottom: 20px;
 }
 
@@ -148,6 +149,63 @@ main > article > p:nth-of-type(2) {
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #f9f9f9;
+}
+
+/* -------------------------------------- */
+/* Estilos para las pruebas de usabilidad */
+/* -------------------------------------- */
+
+main article form[method="post"] { 
+    /* Nota: Usamos 'post' en minúsculas para asegurar que coincide con el HTML */
+    display: block; 
+    margin-bottom: 20px;
+}
+
+main article form button[name="iniciar_prueba"] + p {
+    color: grey;
+    font-style: italic;
+    font-weight: normal;
+    padding: 0;
+    border: none;
+}
+
+/* Estilos básicos para la estructura del formulario */
+main article form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+main article form input[type="text"],
+main article form input[type="number"],
+main article form select,
+main article form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    box-sizing: border-box; 
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilo para las fieldsets de las preguntas */
+main article form fieldset {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+}
+
+/* Estilo para el botón de terminar, para diferenciarlo si es necesario */
+main article form button[name="terminar_prueba"] {
+    background-color: darkred;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
 }
 
 /* Se esta redefiniendo :
