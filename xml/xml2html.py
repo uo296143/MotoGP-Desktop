@@ -10,6 +10,7 @@ Basado en la versión previa del autor.
 import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
+from datetime import datetime
 
 NS = {"u": "http://www.uniovi.es"}
 
@@ -34,6 +35,39 @@ def _iso8601_to_mm_ss(texto):
     minutos = m.group(1) or "0"
     segundos = m.group(2) or "0"
     return f"{minutos} min {segundos} s"
+
+def extraer_hora_y_zona(hora_con_offset: str) -> tuple[str, str]:
+    """
+    Toma una cadena de hora con desplazamiento (ej. '20:00:00+01:00') 
+    y devuelve la hora limpia y el desplazamiento de zona horaria.
+
+    :param hora_con_offset: La cadena de hora en formato ISO 8601.
+    :return: Una tupla (Hora en HH:MM, Desplazamiento de Zona Horaria).
+    """
+    
+    # Formato de lectura, incluyendo la zona horaria (%z)
+    formato_lectura = "%H:%M:%S%z"
+    
+    try:
+        dt_objeto = datetime.strptime(hora_con_offset, formato_lectura)
+        
+        # 1. Hora Limpia (HH:MM)
+        hora_limpia = dt_objeto.strftime("%H:%M")
+        
+        # 2. Desplazamiento de Zona Horaria (formato que respeta los dos puntos)
+        # El .strftime("%z") en Python a menudo devuelve "+0100" sin los dos puntos.
+        # Es mejor tomar la cadena original y extraer la parte de la zona horaria.
+        # Alternativamente, si el formato es estricto, podemos usar:
+        zona_horaria = dt_objeto.strftime("%z")
+        
+        # Para que aparezca como +01:00, podemos insertarle los dos puntos:
+        zona_horaria_formato_iso = f"{zona_horaria[:-2]}:{zona_horaria[-2:]}"
+        
+        return (hora_limpia, zona_horaria_formato_iso)
+        
+    except ValueError:
+        print(f"Error: La cadena de hora '{hora_con_offset}' no coincide con el formato esperado.")
+        return ("", "") # Devuelve tupla vacía en caso de error
 
 def generar_html(xml_path, html_path):
     tree = ET.parse(xml_path)
@@ -77,6 +111,9 @@ def generar_html(xml_path, html_path):
     # Referencias
     refs = [r.text.strip() for r in root.findall(".//u:referencias/u:ref", namespaces=NS) if r.text and r.text.strip()]
 
+    # Formateo de la hora 
+    hora_formateada, huso_horario = extraer_hora_y_zona(hora)
+
     # --- Ensamblado EXACTO del HTML final proporcionado ---
     h = HtmlBuilder()
     h.add("<!DOCTYPE html>")
@@ -96,7 +133,7 @@ def generar_html(xml_path, html_path):
     h.add("      <section>")
     h.add(f"        <h2>{nombre}</h2>")
     h.add(f"        <p>Ubicado en {localidad} ({pais}), este circuito cuenta con una longitud total de {longitud} metros y una anchura media de {anchura} metros. El patrocinador principal es {patrocinador}.</p>")
-    h.add(f"        <p>La carrera del mundial MotoGP se disputará el día {fecha} a las {hora}, con un total de {vueltas} vueltas al trazado.</p>")
+    h.add(f"        <p>La carrera del mundial MotoGP se disputó el día {fecha} a las {hora_formateada} (UTC {huso_horario}) , con un total de {vueltas} vueltas al trazado.</p>")
 
     # Galería de imágenes (mismo orden; mismas líneas y comillas)
     if fotos:
@@ -144,3 +181,4 @@ if __name__ == "__main__":
         print("❌ No se encuentra circuitoEsquema.xml")
     else:
         generar_html(xml, html)
+
