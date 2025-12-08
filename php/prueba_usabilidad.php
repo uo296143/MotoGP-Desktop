@@ -15,16 +15,16 @@ $db_name = 'UO296143_DB';
 
 // NOTA: Debes completar el resto de las 10 preguntas.
 $preguntas = [
-    1 => '¿Cuál es el nombre oficial y completo del circuito de Termas de Río Hondo?',
-    2 => '¿En qué provincia de Argentina se encuentra el circuito?',
-    3 => '¿Cuál fue el nombre del piloto que ganó la carrera de MotoGP de este año en Termas de Río Hondo?',
-    4 => 'Pregunta 4: ¿Dónde se encuentran las clasificaciones?',
-    5 => 'Pregunta 5: ¿Cuál es el piloto con más títulos?',
-    6 => 'Pregunta 6: ¿Qué información hay en la sección Piloto?',
-    7 => 'Pregunta 7: ¿Qué información hay en la sección Circuito?',
-    8 => 'Pregunta 8: ¿Qué información hay en la sección Meteorología?',
-    9 => 'Pregunta 9: ¿Qué información hay en la sección Ayuda?',
-    10 => 'Pregunta 10: ¿Cuántos puntos tiene el piloto líder?',
+    1 => '¿En que país se encuentra el circuito de Moto GP?',
+    2 => '¿Cómo se llama el piloto de Moto GP?',
+    3 => '¿En qué ciudad italiana nació este piloto?',
+    4 => '¿Qué es una chicane?',
+    5 => '¿Cuántos metros mide el circuito?',
+    6 => '¿Quién fue el ganador en este circuito este año?',
+    7 => '¿En que ciudad está el circuito?',
+    8 => '¿Cuánta población tiene dicha ciudad?',
+    9 => '¿Cuál fue el tiempo que le llevó al piloto de este año ganar la prueba?',
+    10 => '¿Quién fue el segundo clasificado este año?',
 ];
 
 // Función auxiliar para obtener ID 
@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $stmt_o->close();
                 }
 
-                $mensaje_al_usuario = "✅ Prueba completada. Resultados guardados en la DB en {$tiempo_total} segundos.";
+                $mensaje_al_usuario = "✅ Prueba completada. Resultados guardados en la DB";
             } else {
                  $mensaje_al_usuario = "❌ Error al guardar datos de usuario. ID no válido.";
             }
