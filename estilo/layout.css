@@ -133,7 +133,6 @@ main article form button[name="iniciar_prueba"] + p {
 /* Estilos básicos para la estructura del formulario */
 main article form label {
     display: block;
-    margin-top: 10px;
     font-weight: 500;
 }
 
@@ -142,31 +141,15 @@ main article form input[type="number"],
 main article form select,
 main article form textarea {
     width: 100%;
-    padding: 8px;
-    margin-top: 4px;
-    margin-bottom: 10px;
     box-sizing: border-box; 
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-/* Estilo para las fieldsets de las preguntas */
-main article form fieldset {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 4px;
 }
 
 /* Estilo para el botón de terminar, para diferenciarlo si es necesario */
 main article form button[name="terminar_prueba"] {
     background-color: darkred;
     color: white;
-    padding: 10px 15px;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
-    margin-top: 20px;
 }
 
 /* Se esta redefiniendo :
@@ -242,12 +225,10 @@ main article form button[name="terminar_prueba"] {
     /* Especificidad 0-0-2 */
     article img {
         width: 100%;
-        height: auto; /* Mantiene la proporción */
+        height: auto; 
         max-width: 100%;
         display: block;
         margin: 0 auto;
-        /* Estilos de presentación móvil */
-        border-radius: 8px; 
         object-fit: contain; 
     }   
 
@@ -256,12 +237,10 @@ main article form button[name="terminar_prueba"] {
     /* Especificidad 0-0-2 */
     section img {
         width: 100%;
-        height: auto; /* Mantiene la proporción */
+        height: auto;
         max-width: 100%;
         display: block;
         margin: 0 auto;
-        /* Estilos de presentación móvil */
-        border-radius: 8px; 
         object-fit: contain; 
     }
 
@@ -269,11 +248,8 @@ main article form button[name="terminar_prueba"] {
     /* Usamos 'article' para seleccionar el contenedor */
     /* Especificidad 0-0-1 */
     section {
-        padding: 10px;
-        margin: 10px;
-        box-sizing: border-box; /* Asegura que padding no aumente el ancho */
+        box-sizing: border-box; 
         max-width: 95vw;
-        /* Opcional: aseguramos que ocupe todo el ancho disponible si está dentro de un contenedor principal */
         width: 95%; 
     }
 
