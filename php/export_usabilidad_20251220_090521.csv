@@ -1,0 +1,9 @@
+ID_Usuario,Profesion,Edad,Genero,Pericia_Informatica,Dispositivo_Prueba,Tiempo_Segundos,Tarea_Completada,Comentarios_Usuario,Propuestas_Mejora,Valoracion
+1,Estudiante,19,Masculino,10,Tableta,131.35,True,"No he tenido ningún problema a la hora de realizar la prueba","La verdad que no he visto ninguna",8
+2,"Ama de casa",48,Femenino,7,Ordenador,160.84,True,"A la hora de cargar los archivos en circuito los botones estaban demasiado cerca","Aumentar la separación entre los botones para cargar los distintos archivos",8
+4,Encofrador,55,Masculino,5,Tableta,176.82,True,"Ninguno con la aplicación, mi mayor problemas ha sido la falta de manejo con dispositivos móviles",Ninguna,10
+4,Encofrador,55,Masculino,5,Tableta,176.82,True,"Ninguno con la aplicación, mi mayor problemas ha sido la falta de manejo con dispositivos móviles",Ninguna,10
+3,Óptica,26,Femenino,8,Teléfono,180.03,True,"Ningun problema","La estética general del sitio web, las páginas web que suelo visitar se ven más bonitas",7
+5,Carpintero,42,Masculino,7,Tableta,146.23,True,"Me costó al principio ver como estaba organizado el sitio web","Mejorar la ayuda para tener una mejor visión inicial de dónde se encuentra cada contenido",7
+6,Soldador,28,Masculino,7,Teléfono,142.95,True,Ninguno,Ninguna,9
+7,Camarero,22,Masculino,8,Ordenador,154.27,True,"En la información del piloto algunos párrafos son muy largos","Hacer los párrafos más cortos ajustando la anchura al resto de la información",8

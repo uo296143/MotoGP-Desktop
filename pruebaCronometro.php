@@ -33,7 +33,7 @@
         </header>
 
         <main>
-            <p>Estás en: <a href="index.html" title="Página principal">Inicio</a> | <a href="juegos.html" title="Juegos">Juegos</a> | <strong>Cronometro</strong></p>
+            <p>Estás en: <a href="index.html" title="Página principal">Inicio</a> | <a href="juegos.html" title="Juegos">Juegos</a> | <strong>Cronometro PHP</strong></p>
             <article>
 
                 <h2>Prueba de la Clase Cronómetro</h2>

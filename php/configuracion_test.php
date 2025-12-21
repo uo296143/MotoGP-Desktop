@@ -50,15 +50,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </li>
                     <li>
                         <button type="submit" name="reiniciar">Reiniciar Datos</button>
-                        <p>Borra **todos los datos** de las tablas principales (usuario, resultado, observacion)[cite: 159].</p>
+                        <p>Borra **todos los datos** de las tablas principales (usuario, resultado, observacion).</p>
                     </li>
                     <li>
                         <button type="submit" name="eliminar" onclick="return confirm('¿Estás seguro de que quieres ELIMINAR COMPLETAMENTE la base de datos UO296143_DB? Esta acción es irreversible.');">Eliminar Base de Datos</button>
-                        <p>Borra la base de datos UO296143_DB, sus tablas y todos los datos[cite: 160].</p>
+                        <p>Borra la base de datos UO296143_DB, sus tablas y todos los datos.</p>
                     </li>
                     <li>
                         <button type="submit" name="exportar">Exportar Datos (.csv)</button>
-                        <p>Exporta todos los datos del test de usabilidad a un archivo CSV[cite: 161].</p>
+                        <p>Exporta todos los datos del test de usabilidad a un archivo CSV.</p>
                     </li>
                 </ul>
             </form>

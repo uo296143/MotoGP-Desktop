@@ -130,12 +130,12 @@ class Ciudad {
     }
   }
 
-  // --- MÉTODOS DE PROCESAMIENTO (CON RENOMBRAMIENTO A PRIVADO) ---
+  // --- MÉTODOS DE PROCESAMIENTO ---
 
   /**
    * Tarea 4: Procesa el objeto JSON de la carrera y almacena la información.
    */
-  _procesarJSONCarrera() { // Renombrado a método privado
+  _procesarJSONCarrera() {
     if (!this.datosCarrera) return;
 
     const daily = this.datosCarrera.daily;
@@ -191,45 +191,46 @@ class Ciudad {
   // --- MÉTODOS PARA AÑADIR INFO (CON RENOMBRAMIENTO A PRIVADO) ---
 
   // Tarea 5: Añade la información de la carrera al documento (DOM)
-  _añadirInfoCarrera() { // Renombrado a método privado
+  _añadirInfoCarrera() {
     const hourly = this.datosCarrera.hourly;
     const $section = $('<section>');
     $section.append($('<h2>').text(`📍 Meteorología de la Carrera: ${this.infoCarrera.fecha}`));
 
-    const $dailyData = $('<p>');
-    $dailyData.append(`Salida del Sol: ${this.infoCarrera.salidaSol}<br>`);
-    $dailyData.append(`Puesta del Sol: ${this.infoCarrera.puestaSol}`);
-    $section.append($dailyData);
-
     const $tabla = $('<table>');
-    $tabla.append($('<caption>').text(`Datos horarios del circuito en Termas de Río Hondo`));
+    $tabla.append($('<caption>').text(`Datos meteorológicos a la hora de la carrera`));
 
+    // Definimos los encabezados con ID para accesibilidad
     const $thead = $('<thead>').append($('<tr>')
-      .append($('<th>').text('Hora'))
-      .append($('<th>').text('Temp a 2m del suelo (ºC)'))
-      .append($('<th>').text('Sens. Térm. (ºC)'))
-      .append($('<th>').text('Lluvia (mm)'))
-      .append($('<th>').text('Humedad a 2m del suelo (%)'))
-      .append($('<th>').text('Vel. Viento a 10m del suelo (km/h)'))
-      .append($('<th>').text('Dir. Viento a 10 m del suelo (º)'))
+      .append($('<th>').attr({ scope: 'col', id: 'h-hora' }).text('Hora'))
+      .append($('<th>').attr({ scope: 'col', id: 'h-temp' }).text('Temp (ºC)'))
+      .append($('<th>').attr({ scope: 'col', id: 'h-sens' }).text('Sens. (ºC)'))
+      .append($('<th>').attr({ scope: 'col', id: 'h-lluvia' }).text('Lluvia (mm)'))
+      .append($('<th>').attr({ scope: 'col', id: 'h-hum' }).text('Hum. (%)'))
+      .append($('<th>').attr({ scope: 'col', id: 'h-vel' }).text('Viento (km/h)'))
+      .append($('<th>').attr({ scope: 'col', id: 'h-dir' }).text('Dir. (º)'))
     );
     $tabla.append($thead);
 
     const $tbody = $('<tbody>');
     hourly.time.forEach((horaISO, index) => {
-      const horaLocal = new Date(horaISO).toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
+      const fechaObjeto = new Date(horaISO);
+      if (fechaObjeto.getHours() === 15) { // O la hora que decidas
+        const horaLocal = fechaObjeto.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
 
-      const $fila = $('<tr>')
-        .append($('<td>').text(horaLocal))
-        .append($('<td>').text(hourly.temperature_2m[index]))
-        .append($('<td>').text(hourly.apparent_temperature[index]))
-        .append($('<td>').text(hourly.rain[index]))
-        .append($('<td>').text(hourly.relative_humidity_2m[index]))
-        .append($('<td>').text(hourly.wind_speed_10m[index]))
-        .append($('<td>').text(hourly.wind_direction_10m[index]));
+        // Vinculamos cada celda con su encabezado mediante 'headers'
+        const $fila = $('<tr>')
+          .append($('<td>').attr('headers', 'h-hora').text(horaLocal))
+          .append($('<td>').attr('headers', 'h-temp').text(hourly.temperature_2m[index]))
+          .append($('<td>').attr('headers', 'h-sens').text(hourly.apparent_temperature[index]))
+          .append($('<td>').attr('headers', 'h-lluvia').text(hourly.rain[index]))
+          .append($('<td>').attr('headers', 'h-hum').text(hourly.relative_humidity_2m[index]))
+          .append($('<td>').attr('headers', 'h-vel').text(hourly.wind_speed_10m[index]))
+          .append($('<td>').attr('headers', 'h-dir').text(hourly.wind_direction_10m[index]));
 
-      $tbody.append($fila);
+        $tbody.append($fila);
+      }
     });
+
     $tabla.append($tbody);
     $('main').append($section.append($tabla));
   }

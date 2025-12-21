@@ -5,6 +5,11 @@ header{
     justify-content: space-between;
 }
 
+p {
+    width: 95%;          /* En móviles ocupará casi todo el ancho [cite: 851] */
+    max-width: 70ch;     /* En escritorio no superará los 70 caracteres de ancho  */
+}
+
 /* Especificidad 0-0-1 */
 h1 {
   flex: 1;                      
@@ -24,37 +29,22 @@ nav {
 input[type="file"] { 
     display: block; 
     width: 100%; 
+    margin: 0.5rem 0;
 }
 
 /* Especificidad 0-0-2 */
 article svg {
     display: block;
     width: 50%;
-    height: auto !important; 
+    height: auto; 
     margin: 0 auto;
-}
-
-/* Especificidad 0-0-1 */
-article.has-svg {
-    display: block; 
-    min-height: 0; 
-    overflow: visible;
-    border: none;
-    margin: 0 auto; 
-    padding: 0.5rem; 
-}
-
-/* Especificidad 0-1-2 */
-article.has-svg svg {
-    width: auto;          
-    max-width: 95vw;       
-    height: auto !important;
-    display: block;
+    max-width: 95vw; 
 }
 
 /* Especificidad 0-0-2 */
 body > main > div {
     width: 100%;
+    height: 70vh;
 }
 
 /* Para las imágenes de la API de noticias */
@@ -74,8 +64,6 @@ main section a img {
 main > article > p:nth-of-type(1) { 
     font-size: 3em;
     font-family: monospace;
-    color: #333;
-    padding: 0;
 }
 
 /* Especificidad 0-1-2 */
@@ -118,38 +106,43 @@ main > article > p:nth-of-type(2) {
 /* Estilos para las pruebas de usabilidad */
 /* -------------------------------------- */
 
+/* Especificidad 0-1-3 */
 main article form[method="post"] { 
     display: block; 
 }
 
+/* Especificidad 0-1-5 */
 main article form button[name="iniciar_prueba"] + p {
     color: grey;
     font-style: italic;
     font-weight: normal;
-    padding: 0;
     border: none;
+    margin-top: 0.5rem;
 }
 
 /* Estilos básicos para la estructura del formulario */
+/* Especificidad 0-0-4 */
 main article form label {
     display: block;
     font-weight: 500;
 }
 
+/* Especificidad 0-1-4 */
+/* Especificidad 0-1-4 */
+/* Especificidad 0-0-4 */
+/* Especificidad 0-0-4 */
 main article form input[type="text"],
 main article form input[type="number"],
 main article form select,
 main article form textarea {
     width: 100%;
     box-sizing: border-box; 
+    margin: 0.5rem 0 1rem 0;
 }
 
-/* Estilo para el botón de terminar, para diferenciarlo si es necesario */
-main article form button[name="terminar_prueba"] {
-    background-color: darkred;
-    color: white;
-    border: none;
-    cursor: pointer;
+/* Especificidad 0-1-4 */
+main article form button[name="terminar_cuestionario"] {
+    margin-top: 1rem;
 }
 
 /* Se esta redefiniendo :
@@ -194,7 +187,7 @@ main article form button[name="terminar_prueba"] {
         padding: 0.5rem;  
     }
 
-    /* Especificidad 0-1-1 */
+    /* Especificidad 0-0-2 */
     /* Para que no se desplieguen las migas */
     header + p {
         display: none;
@@ -240,7 +233,6 @@ main article form button[name="terminar_prueba"] {
         height: auto;
         max-width: 100%;
         display: block;
-        margin: 0 auto;
         object-fit: contain; 
     }
 
@@ -257,8 +249,62 @@ main article form button[name="terminar_prueba"] {
     body > main > div {
         height: 70vh; 
         width: 100%; 
-        margin-left: 0;
-        margin-right: 0;
     }    
+
+    /* Estilos para hacer la tabla responsiva */
+
+    /* Convertimos todo en una lista vertical */
+    /* Especificidad 0-0-1 */
+    /* Especificidad 0-0-1 */
+    /* Especificidad 0-0-1 */
+    /* Especificidad 0-0-1 */
+    /* Especificidad 0-0-1 */
+    table, thead, tbody, tr, td {
+        display: block;
+        width: 100%;
+    }
+
+    /* Escondemos el encabezado de la tabla (los títulos de arriba) */
+    /* Especificidad 0-0-1 */
+    thead {
+        display: none;
+    }
+
+    /* Mostramos el texto en negrita que metimos por JS */
+    /* Especificidad 0-0-2 */
+    td b {
+        display: inline;
+        margin-right: 0.5rem;
+    }
+
+    /* Separamos un poco las filas para que no parezca un bloque de texto */
+    /* Especificidad 0-0-1 */
+    tr {
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    /* Especificidad 0-0-1 */
+    td {
+        padding: 0.3rem 0;
+        text-align: left; /* Más fácil de leer en móvil */
+    }
+
+    /* Inyectamos los nombres de las columnas manualmente */
+    /* Especificidad 0-1-3 */
+    main td:nth-of-type(1)::before { content: "Hora:"; }
+    /* Especificidad 0-1-3 */
+    main td:nth-of-type(2)::before { content: "Temperatura:"; }
+    /* Especificidad 0-1-3 */
+    main td:nth-of-type(3)::before { content: "Sensación:"; }
+    /* Especificidad 0-1-3 */
+    main td:nth-of-type(4)::before { content: "Lluvia:"; }
+    /* Especificidad 0-1-3 */
+    main td:nth-of-type(5)::before { content: "Humedad:"; }
+    /* Especificidad 0-1-3 */
+    main td:nth-of-type(6)::before { content: "Viento:"; }
+    /* Especificidad 0-1-3 */
+    main td:nth-of-type(7)::before { content: "Dirección:"; }
+    /* Especificidad 0-1-3 */
    
 }

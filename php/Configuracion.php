@@ -95,15 +95,12 @@ class Configuracion {
                         r.tarea_completada AS 'Tarea_Completada',
                         r.comentarios_usuario AS 'Comentarios_Usuario',
                         r.propuestas_mejora AS 'Propuestas_Mejora',
-                        r.valoracion AS 'Valoracion',
-                        o.comentarios_facilitador AS 'Comentarios_Facilitador',
-                        r.fecha_prueba AS 'Fecha_Prueba'
+                        r.valoracion AS 'Valoracion'                  
                     FROM resultado r
                     JOIN usuario u ON r.id_usuario_fk = u.id_usuario
                     LEFT JOIN genero g ON u.id_genero = g.id_genero
                     LEFT JOIN dispositivo d ON r.id_dispositivo = d.id_dispositivo
-                    LEFT JOIN observacion o ON u.id_usuario = o.id_usuario_fk
-                    ORDER BY r.fecha_prueba DESC";
+                    LEFT JOIN observacion o ON u.id_usuario = o.id_usuario_fk";
 
             $result = $this->conn->query($sql);
 
@@ -114,7 +111,7 @@ class Configuracion {
                 $file = fopen($filepath, 'w');
                 
                 // Headers CSV
-                $headers = array('ID_Usuario', 'Profesion', 'Edad', 'Genero', 'Pericia_Informatica', 'Dispositivo_Prueba', 'Tiempo_Segundos', 'Tarea_Completada', 'Comentarios_Usuario', 'Propuestas_Mejora', 'Valoracion', 'Comentarios_Facilitador', 'Fecha_Prueba');
+                $headers = array('ID_Usuario', 'Profesion', 'Edad', 'Genero', 'Pericia_Informatica', 'Dispositivo_Prueba', 'Tiempo_Segundos', 'Tarea_Completada', 'Comentarios_Usuario', 'Propuestas_Mejora', 'Valoracion');
                 fputcsv($file, $headers);
 
                 // Datos
