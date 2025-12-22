@@ -53,6 +53,7 @@ p:first-of-type{
 /* EL COLOR DE FONDO SE ESTÁ HEREDANDO DE BODY */
 a{
     text-decoration-line: none;
+    color:#000000;
 }
 
 /* Para todos los links que no sean del header */
