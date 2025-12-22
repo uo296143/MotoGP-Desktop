@@ -69,7 +69,7 @@ a:hover{
 /* EL COLOR DE FONDO SE ESTÁ HEREDANDO DE BODY */
 header a:hover,
 header nav a:hover{
-    color:#c207d3;
+    color:#FF60FF;
 }
 
 /* Especificidad 0-0-1 */
