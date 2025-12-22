@@ -48,6 +48,13 @@ p:first-of-type{
   font-size:0.85em;
 }
 
+/* Especificidad 0-0-1 */
+/* SE ESTÁ DEFINIENDO UN COLOR DE PRIMER PLANO
+/* EL COLOR DE FONDO SE ESTÁ HEREDANDO DE BODY */
+a{
+    text-decoration-line: none;
+}
+
 /* Para todos los links que no sean del header */
 /* SE ESTÁ ESTABLECIENDO UN COLOR DE PRIMER PLANO PERO UNO DE FONDO, ESTE SE HEREDA DEL COLOR POR DEFECTO */
 /* Especificidad 0-1-1 */
