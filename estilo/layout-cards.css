@@ -1,64 +1,63 @@
 /* ====== layout-cards.css — SOLO reglas de layout (GRID) ====== */
 
 /* Contenedor del tablero: el <main> que contiene el título y los 12 <article> */
-/* REDEFINICIÓN DE GAP QUE INVLUYE COLUMN-GAP Y ROW-GAP
 /* Especificidad 0-0-1 */
 main {
   display: grid;                                  
   grid-template-columns: repeat(4, minmax(8rem, 1fr));                                       
   grid-auto-rows: 20em;                           
-  gap: 1rem;                                     
+  gap: 1rem;                                   
   align-content: start;                           
   justify-items: stretch;                        
 }
 
 /* El primer hijo del main (el título del juego) ocupa la fila completa */
-/* REDEFINICIÓN DE GRID-COLUMN QUE INVLUYE GRID-ROW-START Y GRID-ROW-END
 /* Especificidad 0-1-1 */
 main > :first-child {
-  grid-column: 1 / -1;                            /* De la 1ª a la última columna */
+  grid-column: 1 / -1;                            
   text-align: center;
-  grid-row: 1;
+  grid-row: 1; /* REDEFINICIÓN DE GRID-COLUMN QUE INVLUYE GRID-ROW-START Y GRID-ROW-END */
 }
 
 /* Cada carta debe rellenar su celda del grid (anula el 20vw/20em previos) */
 /* Especificidad 0-0-2 */
 main > article {
-  width: 100%;                                    /* Que la carta no fuerce más ancho que su celda */
-  height: 100%;                                   /* Igualamos a grid-auto-rows => las caras 100% encajan */
+  width: 100%;                                    
+  height: 100%;                                  
   box-sizing: border-box;
 }
 
 /* Evita desbordes horizontales por imágenes dentro de las cartas */
 /* Especificidad 0-0-3 */
 main > article img {
-  max-width: 100%;                                /* Que nunca exceda su contenedor */
+  max-width: 100%;                               
   height: 100%;
   object-fit: contain;
   display: block;
 }
 
-/* REDEFINICIÓN DE GRID-COLUMN QUE INVLUYE GRID-ROW-START Y GRID-ROW-END
 /* Especificidad 0-1-2 */
 main > p:first-of-type {
   grid-column: 1 / -1;
   text-align: center;
   font-size: 8em;
-  grid-row: 1;
+  grid-row: 1; /* REDEFINICIÓN DE GRID-COLUMN QUE INVLUYE GRID-ROW-START Y GRID-ROW-END */
 }
 
 
-/* ====== Adaptabilidad (móvil): 2 columnas x 6 filas ====== 
-  Se está redifiniendo las siguiente propiedades para que en móviles las cartas se distribuyan
-  de otra manera : grid-template-columns, grid-auto-rows y gap.
-*/
+/* ====== Adaptabilidad (móvil): 2 columnas x 6 filas ====== */
 @media (max-width: 768px) {
+  /* Especificidad 0-0-1 */
   main {
-    grid-template-columns: repeat(2, minmax(8rem, 1fr));                                                
+    /* REDEFINICIÓN DE GRID-TEMPLATE-COLUMNS */
+    grid-template-columns: repeat(2, minmax(8rem, 1fr));  
+    /* REDEFINICIÓN DE GRID-AUTO-ROWS */                                              
     grid-auto-rows: 18em;                                                      
   }
 
+  /* Especificidad 0-1-2 */
   main > p:first-of-type {
+    /* REDEFINICIÓN DE FONT-SIZE */
     font-size: 5em;
 }
 }

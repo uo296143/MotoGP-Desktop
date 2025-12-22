@@ -201,95 +201,91 @@ $required_atributos = 'required'; // Las preguntas y valoraciones siempre son re
     </header>
 
     <main>
-        <section>
-            <h2>Estado de la Prueba</h2>
-            <p><?php echo $mensaje_al_usuario; ?></p>
-        </section>
-        
         <article>
+            <h2>Prueba de Usabilidad</h2>
             <form method="post" action="prueba_usabilidad.php">
 
-            <?php if ($estado === 'inicio'): // PANTALLA 1: DATOS DE USUARIO ?>
+                <?php if ($estado === 'inicio'): // PANTALLA 1: DATOS DE USUARIO ?>
 
-                <h3>1. Datos del Usuario (Introducidos por el observador)</h3>
-                
-                <label for="id_prueba">ID de Prueba (1 a 12):</label>
-                <input type="number" id="id_prueba" name="id_prueba" min="1" max="12" 
-                    value="<?php echo $get_value('id_prueba', ''); ?>" required />
-                
-                <label for="profesion">Profesión:</label>
-                <input type="text" id="profesion" name="profesion" 
-                    value="<?php echo $get_value('profesion'); ?>" required />
-                
-                <label for="edad">Edad:</label>
-                <input type="number" id="edad" name="edad" min="16" max="100" 
-                    value="<?php echo $get_value('edad'); ?>" required />
-                
-                <label for="genero">Género:</label>
-                <select id="genero" name="genero" required>
-                    <option value="">Seleccione</option>
-                    <option value="Masculino" <?php echo $is_selected('genero', 'Masculino'); ?>>Masculino</option>
-                    <option value="Femenino" <?php echo $is_selected('genero', 'Femenino'); ?>>Femenino</option>
-                    <option value="Otro" <?php echo $is_selected('genero', 'Otro'); ?>>Otro</option>
-                </select>
-
-                <label for="pericia">Pericia Informática (0 a 10):</label>
-                <input type="number" id="pericia" name="pericia" min="0" max="10" 
-                    value="<?php echo $get_value('pericia'); ?>" required />
-
-                <label for="dispositivo">Dispositivo de la Prueba:</label>
-                <select id="dispositivo" name="dispositivo" required>
-                    <option value="">Seleccione</option>
-                    <option value="Ordenador" <?php echo $is_selected('dispositivo', 'Ordenador'); ?>>Ordenador de escritorio</option>
-                    <option value="Tableta" <?php echo $is_selected('dispositivo', 'Tableta'); ?>>Tableta</option>
-                    <option value="Teléfono" <?php echo $is_selected('dispositivo', 'Teléfono'); ?>>Teléfono</option>
-                </select>
-                
-                <button type="submit" name="iniciar_prueba">Iniciar</button>
-
-            <?php elseif ($estado === 'preguntas'): // PANTALLA 2: PREGUNTAS ?>
-                <section>
-                    <h3>2. Conteste las siguientes preguntas</h3>
-                    <?php 
-                    // Input oculto para mantener el ID de prueba en el POST
-                    echo '<input type="hidden" name="id_prueba" value="' . $get_value('id_prueba', 1) . '" />';
-                    ?>
-
-                    <?php foreach ($preguntas as $num => $pregunta): ?>
-                        <fieldset>
-                            <legend>Tarea <?php echo $num; ?></legend>
-                            <p><?php echo $pregunta; ?></p>
-                            <label for="respuesta_<?php echo $num; ?>">Respuesta Encontrada:</label>
-                            <textarea id="respuesta_<?php echo $num; ?>" name="respuesta_<?php echo $num; ?>"  required></textarea>
-                        </fieldset>
-                    <?php endforeach; ?>
-                                    
-                    <button type="submit" name="terminar_cuestionario">Finalizar</button>
-                </section>
-
-            
-            <?php elseif ($estado === 'revision'): // PANTALLA 3: COMENTARIOS Y VALORACIÓN ?>
-                <section> 
-                    <h3>3. Revisión, Comentarios y Valoración</h3>
+                    <h3>1. Datos del Usuario (Introducidos por el observador)</h3>
                     
-                    <label for="tarea_completada">Tarea de Usabilidad Completada :</label>
-                    <input type="checkbox" id="tarea_completada" name="tarea_completada" value="1" checked/>
+                    <label for="id_prueba">ID de Prueba (1 a 12):</label>
+                    <input type="number" id="id_prueba" name="id_prueba" min="1" max="12" 
+                        value="<?php echo $get_value('id_prueba', ''); ?>" required />
                     
-                    <label for="comentarios_usuario">Comentarios del Usuario (Problemas encontrados):</label>
-                    <textarea id="comentarios_usuario" name="comentarios_usuario" required></textarea>
-
-                    <label for="propuestas_mejora">Propuestas de Mejora del Usuario:</label>
-                    <textarea id="propuestas_mejora" name="propuestas_mejora" required></textarea>
-
-                    <label for="valoracion">Valoración de la aplicación (0 a 10):</label>
-                    <input type="number" id="valoracion" name="valoracion" min="0" max="10" required/>
+                    <label for="profesion">Profesión:</label>
+                    <input type="text" id="profesion" name="profesion" 
+                        value="<?php echo $get_value('profesion'); ?>" required />
                     
-                    <label for="comentarios_facilitador">Comentarios Adicionales del Observador</label>
-                    <textarea id="comentarios_facilitador" name="comentarios_facilitador" required></textarea> 
+                    <label for="edad">Edad:</label>
+                    <input type="number" id="edad" name="edad" min="16" max="100" 
+                        value="<?php echo $get_value('edad'); ?>" required />
+                    
+                    <label for="genero">Género:</label>
+                    <select id="genero" name="genero" required>
+                        <option value="">Seleccione</option>
+                        <option value="Masculino" <?php echo $is_selected('genero', 'Masculino'); ?>>Masculino</option>
+                        <option value="Femenino" <?php echo $is_selected('genero', 'Femenino'); ?>>Femenino</option>
+                        <option value="Otro" <?php echo $is_selected('genero', 'Otro'); ?>>Otro</option>
+                    </select>
 
-                    <button type="submit" name="finalizar_guardar">Finalizar y Guardar Resultados</button>
-                </section>
-            <?php endif; ?>
+                    <label for="pericia">Pericia Informática (0 a 10):</label>
+                    <input type="number" id="pericia" name="pericia" min="0" max="10" 
+                        value="<?php echo $get_value('pericia'); ?>" required />
+
+                    <label for="dispositivo">Dispositivo de la Prueba:</label>
+                    <select id="dispositivo" name="dispositivo" required>
+                        <option value="">Seleccione</option>
+                        <option value="Ordenador" <?php echo $is_selected('dispositivo', 'Ordenador'); ?>>Ordenador de escritorio</option>
+                        <option value="Tableta" <?php echo $is_selected('dispositivo', 'Tableta'); ?>>Tableta</option>
+                        <option value="Teléfono" <?php echo $is_selected('dispositivo', 'Teléfono'); ?>>Teléfono</option>
+                    </select>
+                    
+                    <button type="submit" name="iniciar_prueba">Iniciar</button>
+
+                <?php elseif ($estado === 'preguntas'): // PANTALLA 2: PREGUNTAS ?>
+                    <section>
+                        <h3>2. Conteste las siguientes preguntas</h3>
+                        <?php 
+                        // Input oculto para mantener el ID de prueba en el POST
+                        echo '<input type="hidden" name="id_prueba" value="' . $get_value('id_prueba', 1) . '" />';
+                        ?>
+
+                        <?php foreach ($preguntas as $num => $pregunta): ?>
+                            <fieldset>
+                                <legend>Tarea <?php echo $num; ?></legend>
+                                <p><?php echo $pregunta; ?></p>
+                                <label for="respuesta_<?php echo $num; ?>">Respuesta Encontrada:</label>
+                                <textarea id="respuesta_<?php echo $num; ?>" name="respuesta_<?php echo $num; ?>"  required></textarea>
+                            </fieldset>
+                        <?php endforeach; ?>
+                                        
+                        <button type="submit" name="terminar_cuestionario">Finalizar</button>
+                    </section>
+
+                
+                <?php elseif ($estado === 'revision'): // PANTALLA 3: COMENTARIOS Y VALORACIÓN ?>
+                    <section> 
+                        <h3>3. Revisión, Comentarios y Valoración</h3>
+                        
+                        <label for="tarea_completada">Tarea de Usabilidad Completada :</label>
+                        <input type="checkbox" id="tarea_completada" name="tarea_completada" value="1" checked/>
+                        
+                        <label for="comentarios_usuario">Comentarios del Usuario (Problemas encontrados):</label>
+                        <textarea id="comentarios_usuario" name="comentarios_usuario" required></textarea>
+
+                        <label for="propuestas_mejora">Propuestas de Mejora del Usuario:</label>
+                        <textarea id="propuestas_mejora" name="propuestas_mejora" required></textarea>
+
+                        <label for="valoracion">Valoración de la aplicación (0 a 10):</label>
+                        <input type="number" id="valoracion" name="valoracion" min="0" max="10" required/>
+                        
+                        <label for="comentarios_facilitador">Comentarios Adicionales del Observador</label>
+                        <textarea id="comentarios_facilitador" name="comentarios_facilitador" required></textarea> 
+
+                        <button type="submit" name="finalizar_guardar">Finalizar y Guardar Resultados</button>
+                    </section>
+                <?php endif; ?>
 
             </form>
         </article>

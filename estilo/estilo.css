@@ -11,16 +11,20 @@ body{
 }
 
 /* Especificidad 0-0-3 */
+/* SE ESTÁ ESTABLECIENDO UN COLOR DE PRIMER PLANO PERO UNO DE FONDO, ESTE SE HEREDA DEL COLOR POR DEFECTO */
 header h1 a{
     color:#FFFFFF;
 }
 
 /* Especificidad 0-0-1 */
+/* SE ESTÁ ESTABLECIENDO UN COLOR DE FONDO PERO NO UNO DE PRIMER PLANO, ESTE SE HEREDA DEL COLOR POR DEFECTO.
+   SI HAY ENLACES HEREDA EL COLOR DENIFIDO EN a : #1C1C1C */
 header{
-    background-color: #333333; /* gris beige más oscuro que el fondo */
+    background-color: #000000; /* gris beige más oscuro que el fondo */
 }
 
 /* Especificidad 0-0-2 */
+/* SE ESTÁ ESTABLECIENDO UN COLOR DE PRIMER PLANO PERO UNO DE FONDO, ESTE SE HEREDA DEL COLOR POR DEFECTO */
 nav > a{
     font-size: 1.2rem;
     color:#FFFFFF;
@@ -54,6 +58,7 @@ a{
 }
 
 /* Para todos los links que no sean del header */
+/* SE ESTÁ ESTABLECIENDO UN COLOR DE PRIMER PLANO PERO UNO DE FONDO, ESTE SE HEREDA DEL COLOR POR DEFECTO */
 /* Especificidad 0-1-1 */
 a:hover{
     color:#482CF3

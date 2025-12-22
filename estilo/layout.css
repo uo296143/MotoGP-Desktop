@@ -5,12 +5,14 @@ header{
     justify-content: space-between;
 }
 
+/* Especificidad 0-0-1 */
 p {
     width: 95%;          /* En móviles ocupará casi todo el ancho [cite: 851] */
     max-width: 70ch;     /* En escritorio no superará los 70 caracteres de ancho  */
 }
 
 /* Especificidad 0-0-1 */
+/* ADVERTENCIA: SE DEFINE COLOR DE PRIMER PLANO. EL COLOR DE FONDO SE HEREDA DEL ELEMENTO 'HEADER' */
 h1 {
   flex: 1;                      
   text-align: center;
@@ -98,6 +100,7 @@ form[method="POST"] button:hover {
 }
 
 /* Especificidad 0-1-3 */
+/* ADVERTENCIA: SE DEFINE COLOR DE FONDO. EL COLOR DE PRIMER PLANO SE HEREDA DEL ELEMENTO 'ARTICLE' */
 main > article > p:nth-of-type(2) { 
     background-color: #f9f9f9;
 }
@@ -112,6 +115,7 @@ main article form[method="post"] {
 }
 
 /* Especificidad 0-1-5 */
+/* ADVERTENCIA: SE DEFINE COLOR DE PRIMER PLANO. EL COLOR DE FONDO SE HEREDA DEL ELEMENTO 'FORM' */
 main article form button[name="iniciar_prueba"] + p {
     color: grey;
     font-style: italic;
@@ -145,42 +149,21 @@ main article form button[name="terminar_cuestionario"] {
     margin-top: 1rem;
 }
 
-/* Se esta redefiniendo :
-    1 - 
-    header{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    2 -
-    nav {
-        display: flex; 
-    }
-
-    3 -
-    body > main > div {
-        height: 70vh;
-        width: 100%;
-    }
-
-  Se esta cambiando:
-    1 - El header para que se distribuyan los elementos verticalmente.
-    2 - El nav para que los elementos se distribuyan verticalmente.
-    3 - 
-   
-*/
 @media (min-width: 320px) and (max-width: 799px) {
 
     /* Especificidad 0-0-1 */
     header{
+        /* REDEFINICIÓN: Se mantiene 'display: flex' para asegurar el contexto de caja en el flujo móvil */
         display: flex;
+        /* REDEFINICIÓN: Se mantiene 'display: flex' para asegurar el contexto de caja en el flujo móvil */
         flex-direction: column;
+        /* REDEFINICIÓN: Modificación del valor para ajustar la distribución en el eje vertical del móvil */
         justify-content: space-between;
     }
 
     /* Especificidad 0-0-1 */
     nav {
+        /* REDEFINICIÓN: Necesaria para aplicar el nuevo flujo de dirección 'column' en el menú */
         display: flex;       
         flex-direction: column;             
         gap: 0.5rem;    
@@ -245,12 +228,6 @@ main article form button[name="terminar_cuestionario"] {
         width: 95%; 
     }
 
-    /* Especificidad 0-0-3 */
-    body > main > div {
-        height: 70vh; 
-        width: 100%; 
-    }    
-
     /* Estilos para hacer la tabla responsiva */
 
     /* Convertimos todo en una lista vertical */
@@ -267,6 +244,7 @@ main article form button[name="terminar_cuestionario"] {
     /* Escondemos el encabezado de la tabla (los títulos de arriba) */
     /* Especificidad 0-0-1 */
     thead {
+        /* REDEFINICIÓN: Se esconde el encabezado de la tabla */
         display: none;
     }
 

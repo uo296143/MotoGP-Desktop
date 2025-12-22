@@ -135,88 +135,69 @@ class Circuito {
 
 class CargadorSVG {
     /** @type {HTMLElement} */
-    #outputElement;
+    #parentContext;
 
     constructor() {
-        this.#outputElement = document.querySelector('article');
-        if (this.#outputElement) {
-            // Usa la clase base para configurar el listener de forma genérica
+        // Seleccionamos el contenedor padre (main) ya que el article no existirá de inicio
+        this.#parentContext = document.querySelector('main');
+
+        if (this.#parentContext) {
             LectorArchivosBase.configurarInput(
                 'input[title="Selector de Archivo SVG"]',
                 (archivo) => this.#leerArchivoSVG(archivo)
             );
         } else {
-            console.error("Error en CargadorSVG: Elemento <article> no encontrado.");
+            console.error("Error: No se encontró el elemento <main>.");
         }
     }
 
     /**
-     * @private
-     * Inserta un título h2 como primer hijo del div contenedor del mapa.
-     * @param {string} textoTitulo - El texto para el título.
-     */
-    #insertarTituloAltimetria(textoTitulo) {
-        const elementoMapa = document.querySelector('body > main > article');
-        if (!elementoMapa) {
-            console.error("Error: No se encontró el article para insertar el título.");
-            return;
-        }
-
-        // Verificar si el título ya existe para evitar duplicados
-        const tituloExistente = elementoMapa.querySelector('h2');
-        if (tituloExistente && tituloExistente.textContent === textoTitulo) {
-            return; // El título ya está, no hacemos nada
-        }
-
-        const titulo = document.createElement('h2');
-        titulo.textContent = textoTitulo;
-
-        // Usamos prepend() para asegurar que se inserte como el PRIMER hijo.
-        // Si ya había un título diferente, lo reemplaza o lo mantiene al inicio.
-        if (tituloExistente) {
-            tituloExistente.remove(); // Opcional: si quieres asegurar que solo haya UNO
-        }
-        elementoMapa.before(titulo);
-    }
-
-    /**
-     * Muestra el contenido SVG en el elemento <article>.
-     * @param {string} contenidoSVG - La cadena de texto que contiene el código SVG.
-     */
+         * Tarea 1: Muestra el contenido SVG creando dinámicamente el elemento article.
+         * @param {string} contenidoSVG - El código SVG cargado.
+         */
     #insertarSVG(contenidoSVG) {
-        if (!this.#outputElement) return;
+        // 1. Eliminar article previo si existe
+        const articlePrevio = this.#parentContext.querySelector('article');
+        if (articlePrevio) {
+            articlePrevio.remove();
+        }
 
-        this.#insertarTituloAltimetria("Altimetría del circuito");
-        this.#outputElement.innerHTML = contenidoSVG;
+        // 2. Crear el elemento article
+        const nuevoArticle = document.createElement('article');
 
-        const svgEl = this.#outputElement.querySelector('svg');
+        // 3. Crear el encabezado h2 e insertarlo PRIMERO
+        const titulo = document.createElement('h2');
+        titulo.textContent = "Altimetría del circuito";
+        nuevoArticle.appendChild(titulo);
+
+        // 4. Crear un contenedor para el SVG (un div es neutro y no pide títulos)
+        // O simplemente inyectar el SVG directamente al article
+        const contenedorSVG = document.createElement('div');
+        contenedorSVG.innerHTML = contenidoSVG;
+        nuevoArticle.appendChild(contenedorSVG);
+
+        // 5. Inyectar al DOM
+        this.#parentContext.appendChild(nuevoArticle);
+
+        // 6. Ajustes de visualización
+        const svgEl = nuevoArticle.querySelector('svg');
         if (svgEl) {
-            // Optimización de SVG
             svgEl.removeAttribute('width');
             svgEl.removeAttribute('height');
-
-            // Normalización de viewBox
             if (!svgEl.hasAttribute('viewBox')) {
-                try {
-                    const bbox = svgEl.getBBox();
-                    const w = bbox.width || 1100;
-                    const h = bbox.height || 480;
-                    svgEl.setAttribute('viewBox', `0 0 ${w} ${h}`);
-                } catch (e) {
-                    svgEl.setAttribute('viewBox', '0 0 1100 480');
-                }
+                svgEl.setAttribute('viewBox', '0 0 1100 480');
             }
         }
     }
 
     /**
-     * Carga un archivo SVG desde la máquina cliente usando API File.
+     * Tarea 2: Lectura del archivo altimetria.svg usando API File.
      * @param {File} file - El objeto File seleccionado.
      */
     #leerArchivoSVG(file) {
         const tipoSVG = /image\/svg\+xml/;
         if (!file.type.match(tipoSVG)) {
-            this.#outputElement.innerHTML = `<p>Error: ¡Archivo no válido! Selecciona un SVG.</p>`;
+            alert("Error: ¡Archivo no válido! Selecciona un archivo SVG.");
             return;
         }
 
@@ -225,7 +206,7 @@ class CargadorSVG {
                 this.#insertarSVG(contenidoSVG);
             })
             .catch(error => {
-                this.#outputElement.innerHTML = `<p>Error: Falló la lectura del archivo. ${error.message}</p>`;
+                console.error("Error de lectura: " + error.message);
             });
     }
 }
