@@ -17,10 +17,9 @@ header h1 a{
 }
 
 /* Especificidad 0-0-1 */
-/* SE ESTÁ ESTABLECIENDO UN COLOR DE FONDO PERO NO UNO DE PRIMER PLANO, ESTE SE HEREDA DEL COLOR POR DEFECTO.
-   SI HAY ENLACES HEREDA EL COLOR DENIFIDO EN a : #1C1C1C */
 header{
     background-color: #000000; /* gris beige más oscuro que el fondo */
+    color: #FFFFFF;
 }
 
 /* Especificidad 0-0-2 */
