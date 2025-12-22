@@ -248,46 +248,47 @@ $required_atributos = 'required'; // Las preguntas y valoraciones siempre son re
                 <button type="submit" name="iniciar_prueba">Iniciar</button>
 
             <?php elseif ($estado === 'preguntas'): // PANTALLA 2: PREGUNTAS ?>
-                
-                <h3>2. Conteste las siguientes preguntas</h3>
+                <section>
+                    <h3>2. Conteste las siguientes preguntas</h3>
+                    <?php 
+                    // Input oculto para mantener el ID de prueba en el POST
+                    echo '<input type="hidden" name="id_prueba" value="' . $get_value('id_prueba', 1) . '" />';
+                    ?>
 
-                <?php 
-                // Input oculto para mantener el ID de prueba en el POST
-                echo '<input type="hidden" name="id_prueba" value="' . $get_value('id_prueba', 1) . '" />';
-                ?>
+                    <?php foreach ($preguntas as $num => $pregunta): ?>
+                        <fieldset>
+                            <legend>Tarea <?php echo $num; ?></legend>
+                            <p><?php echo $pregunta; ?></p>
+                            <label for="respuesta_<?php echo $num; ?>">Respuesta Encontrada:</label>
+                            <textarea id="respuesta_<?php echo $num; ?>" name="respuesta_<?php echo $num; ?>"  required></textarea>
+                        </fieldset>
+                    <?php endforeach; ?>
+                                    
+                    <button type="submit" name="terminar_cuestionario">Finalizar</button>
+                </section>
 
-                <?php foreach ($preguntas as $num => $pregunta): ?>
-                    <fieldset>
-                        <legend>Tarea <?php echo $num; ?></legend>
-                        <p><?php echo $pregunta; ?></p>
-                        <label for="respuesta_<?php echo $num; ?>">Respuesta Encontrada:</label>
-                        <textarea id="respuesta_<?php echo $num; ?>" name="respuesta_<?php echo $num; ?>" rows="2" required></textarea>
-                    </fieldset>
-                <?php endforeach; ?>
-
-                <button type="submit" name="terminar_cuestionario">Finalizar</button>
             
             <?php elseif ($estado === 'revision'): // PANTALLA 3: COMENTARIOS Y VALORACIÓN ?>
-                
-                <h3>3. Revisión, Comentarios y Valoración</h3>
-                
-                <label for="tarea_completada">Tarea de Usabilidad Completada (Todas las 10 preguntas):</label>
-                <input type="checkbox" id="tarea_completada" name="tarea_completada" value="1" checked/>
-                
-                <label for="comentarios_usuario">Comentarios del Usuario (Problemas encontrados):</label>
-                <textarea id="comentarios_usuario" name="comentarios_usuario" rows="4" required></textarea>
+                <section> 
+                    <h3>3. Revisión, Comentarios y Valoración</h3>
+                    
+                    <label for="tarea_completada">Tarea de Usabilidad Completada :</label>
+                    <input type="checkbox" id="tarea_completada" name="tarea_completada" value="1" checked/>
+                    
+                    <label for="comentarios_usuario">Comentarios del Usuario (Problemas encontrados):</label>
+                    <textarea id="comentarios_usuario" name="comentarios_usuario" required></textarea>
 
-                <label for="propuestas_mejora">Propuestas de Mejora del Usuario:</label>
-                <textarea id="propuestas_mejora" name="propuestas_mejora" rows="4" required></textarea>
+                    <label for="propuestas_mejora">Propuestas de Mejora del Usuario:</label>
+                    <textarea id="propuestas_mejora" name="propuestas_mejora" required></textarea>
 
-                <label for="valoracion">Valoración de la aplicación (0 a 10):</label>
-                <input type="number" id="valoracion" name="valoracion" min="0" max="10" required/>
-                
-                <label for="comentarios_facilitador">Comentarios Adicionales del Observador</label>
-                <textarea id="comentarios_facilitador" name="comentarios_facilitador" rows="4" required></textarea> 
+                    <label for="valoracion">Valoración de la aplicación (0 a 10):</label>
+                    <input type="number" id="valoracion" name="valoracion" min="0" max="10" required/>
+                    
+                    <label for="comentarios_facilitador">Comentarios Adicionales del Observador</label>
+                    <textarea id="comentarios_facilitador" name="comentarios_facilitador" required></textarea> 
 
-                <button type="submit" name="finalizar_guardar">Finalizar y Guardar Resultados</button>
-
+                    <button type="submit" name="finalizar_guardar">Finalizar y Guardar Resultados</button>
+                </section>
             <?php endif; ?>
 
             </form>
